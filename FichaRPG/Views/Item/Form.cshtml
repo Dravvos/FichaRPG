@@ -1,0 +1,38 @@
+﻿@model ItensViewModel
+
+<div class="container">
+    <form asp-action="save">
+        <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
+
+        @if (ViewBag.Operacao == "I")
+        {
+            <input type="hidden" id="Persona-id" name="PersonagemId" value="@ViewBag.Personagem" />
+        }
+        else
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+        <label>Nome:</label>
+        <input class="form-control" required asp-for="Nome" />
+        <span class="text-danger" asp-validation-for="Nome"></span>
+        <label>Descrição:</label>
+        <input class="form-control" asp-for="Descricao" />
+        <span class="text-danger" asp-validation-for="Descricao"></span>
+        <label>Espaço:</label>
+        <input class="form-control" required asp-for="Espaco" />
+        <span class="text-danger" asp-validation-for="Espaco"></span>
+        <label>Categoria:</label>
+        <input class="form-control" required asp-for="Categoria" />
+        <span class="text-danger" asp-validation-for="Categoria"></span>
+        <br />
+        @if (ViewBag.Operacao == "I")
+        {
+            <button class="btn Rpg-Button" type="submit">Adicionar ao inventário</button>
+        }
+        else
+        {
+            <button class="btn Rpg-Button" type="submit">Salvar Alterações</button>
+        }
+
+    </form>
+</div>

@@ -1,0 +1,44 @@
+﻿@model UsuarioViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./css/login.css"/>
+    </head>
+    <div class="limiter">
+        <div class="container-login">
+            <div class="wrap-login p-l-55 p-r-55 pt-4 p-b-54">
+                <form class="login-form" asp-controller="Login" asp-action="Login" >
+                    <span class="login-form-title pb-5">Login</span>
+                    <div class="wrap-input validate-input m-b-23">
+                        <span class="label-input">Usuário ou Email</span>
+                        <input class="input100" required asp-for="UsuarioLogin" placeholder="Digite seu email/nome de usuário" />
+                    </div>
+                     <div class="wrap-input validate-input m-b-23">
+                        <span class="label-input">Senha</span>
+                        <input class="input100" required type="password" asp-for="Senha" placeholder="Digite sua senha" />
+                    </div>
+                    <div class="text-right p-t-8 p-b-31">
+                        <a class="btn btn-outline-light" href="#">Esqueceu a senha?</a>
+                    </div>
+                    <div class="container-login-form-btn">
+						<div class="wrap-login-form-btn">
+							<div class="login-form-bgbtn"></div>
+							<button type="submit" class="login-form-btn">
+								Entrar
+							</button>
+						</div>
+					</div>
+                    <span  class="text-danger">@ViewBag.Erro</span>
+                    
+                    <div class="txt1 text-center p-t-54 p-b-20">
+						<span class="text-light">Não possui uma conta?</span> <br />
+                        <a href="Usuario/Create">Cadastre-se</a>
+					</div>
+                </form>
+            </div>
+        </div>
+    </div>

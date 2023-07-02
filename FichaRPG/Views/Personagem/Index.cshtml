@@ -1,0 +1,64 @@
+﻿@model List<PersonagemViewModel>
+@using FichaRPG.DAO;
+@{
+
+    var personagemDAO = new PersonagemDAO();
+    var personagens=personagemDAO.ListarPersonagensPorUsuario(ViewBag.Usuario);
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/personagem.css" />
+</head>
+<div class="container">
+    <div class="rpg-coluna">
+        <div class="rpg-personagens">
+            <div class="rpg-card-body">
+                <div class="rpg-header">
+                    <h2 class="text-center">Seus Personagens</h2>
+                </div>
+
+                @foreach (var Personagem in personagens)
+                {
+                    <div class="rpg-row">
+                        <div class="rpg-card">
+                            <div class="rpg-card-2">
+                                <div class="rpg-card-body">
+
+                                    <a href="javascript:apagarPersonagem(@Personagem.Id)" class="btn btn-lg text-danger float-right">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    <div class="rpg-card-title">
+                                        <label class="text-danger font-weight-bold">@Personagem.Nome</label>
+                                    </div>
+
+                                    <textarea style="height:100px" class="text-white bg-dark w-100">@Personagem.Historia</textarea>
+                                    <div class="rpg-card-footer">
+                                        <a class="btn btn-outline-primary" href="/Personagem/Details?id=@Personagem.Id">Dar uma Olhada - @Personagem.Nome</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="rpg-row">
+
+                    <div class="rpg-card">
+                        <div class="rpg-card-2">
+                            <div class="rpg-card-body">
+                                <div class="rpg-card-title">
+                                    <label class="text-danger font-weight-bold">Criar Ficha de Personagem</label>
+                                </div>
+                                <div class="rpg-card-footer">
+                                    <a asp-action="Create" class="btn btn-outline-success">Criar um personagem</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

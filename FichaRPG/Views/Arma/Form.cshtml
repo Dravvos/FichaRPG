@@ -1,0 +1,47 @@
+﻿@model ArmasViewModel
+@{
+
+}
+<div class="container">
+    <form asp-action="save">
+        <input type="hidden" name="operacao" value="@ViewBag.Operacao"/>
+        
+        @if(ViewBag.Operacao=="I"){
+            <input type="hidden" id="Persona-id" name="PersonagemId" value="@ViewBag.Personagem" />
+        }
+        else{
+            <input hidden asp-for="Id" />
+        }
+        <label>Nome:</label>
+        <input class="form-control" required asp-for="Nome" />
+        <span class="text-danger" asp-validation-for="Nome"></span>
+        <label>Alcance:</label>
+        <input class="form-control" required asp-for="Alcance" />
+        <span class="text-danger" asp-validation-for="Alcance"></span>
+        <label>Espaço:</label>
+        <input class="form-control" required asp-for="Espaco" />
+        <span class="text-danger" asp-validation-for="Espaco"></span>
+        <label>Tipo:</label>
+        <input class="form-control" required asp-for="Tipo" />
+        <span class="text-danger" asp-validation-for="Tipo"></span>
+        <label>Categoria:</label>
+        <input class="form-control" required asp-for="Categoria" />
+        <span class="text-danger" asp-validation-for="Categoria"></span>
+        <label>Dano:</label>
+        <input class="form-control" required asp-for="Dano" />
+        <span class="text-danger" asp-validation-for="Dano"></span>
+        <label>Crítico:</label>
+        <input class="form-control" required asp-for="Critico" />
+        <span class="text-danger" asp-validation-for="Critico"></span>
+        <br />
+        @if (ViewBag.Operacao == "I")
+        {
+            <button class="btn Rpg-Button" type="submit">Adicionar ao inventário</button>
+        }
+        else
+        {
+            <button class="btn Rpg-Button" type="submit">Salvar Alterações</button>
+        }
+        
+    </form>
+</div>
