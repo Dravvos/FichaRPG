@@ -18,15 +18,17 @@ namespace FichaRPG.Controllers
         [HttpGet]
         public override IActionResult Create()
         {
-            if (TempData["Personagem"] != null)
+            if (HttpContext.Session.GetInt32("RitualId") != 0 && HttpContext.Session.GetInt32("RitualId") != null)
             {
-                ViewBag.Operacao = "I";
-                ViewBag.Personagem = JsonConvert.DeserializeObject(TempData["Personagem"].ToString());
+                ViewBag.Personagem = HttpContext.Session.GetInt32("RitualId");
+
+                return base.Create();
             }
-            return base.Create();
+            return Json("ERRO! PersonagemId está nulo");
         }
         protected override void ValidaDados(RituaisViewModel model, string operacao)
         {
+            ModelState.Clear();
             if (string.IsNullOrEmpty(model.Nome))
                 ModelState.AddModelError("Nome", "Digite o nome do ritual");
             if (string.IsNullOrEmpty(model.Elemento))
@@ -45,10 +47,9 @@ namespace FichaRPG.Controllers
         }
         public override IActionResult Save(RituaisViewModel model, string operacao)
         {
-
-            int personagemId = Convert.ToInt32(Request.Form["Persona-id"]);
             try
             {
+                int personagemId = Convert.ToInt32(HttpContext.Session.GetInt32("RitualId"));
                 ValidaDados(model, operacao);
                 if (ModelState.IsValid == false)
                 {
@@ -96,8 +97,19 @@ namespace FichaRPG.Controllers
         {
             ViewBag.Personagem = personagemId;
 
-
             return base.Edit(id);
+        }
+        public override IActionResult Delete(int id)
+        {
+            try
+            {
+                DAO.Delete(id);
+                return RedirectToAction("Details", "Personagem", new { id = HttpContext.Session.GetInt32("PersonagemId") });
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
 
     }

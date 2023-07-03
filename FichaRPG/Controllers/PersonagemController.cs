@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using Newtonsoft.Json;
 using System;
+using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace FichaRPG.Controllers
 {
@@ -356,6 +358,29 @@ namespace FichaRPG.Controllers
         {
             try
             {
+                Regex regex = new Regex(@"(\d+)d(\d+)");
+                MatchCollection matches = regex.Matches(dado);
+
+                if (matches.Count > 2)
+                {
+                    int[][] numeros = new int[matches.Count][];
+                    int indice = 0;
+                    foreach(Match match in matches)
+                    {
+                        int num1 = int.Parse(match.Groups[1].Value);
+                        int num2 = int.Parse(match.Groups[2].Value);
+                        numeros[indice] = new int[] { num1, num2 };
+                        indice++;
+                    }
+                    for(int i = 1; i < numeros.Length; i++)
+                    {
+                        if (numeros[i][0] == numeros[i - 1][0] && numeros[i][1] == numeros[i - 1][1] && dano==false)
+                        {
+                            throw new Exception("Dados diferentes faces só podem ser criados se forem de dano");
+                        }
+                    }
+                }
+
                 var model = new DadoViewModel();
                 var dao = new DadoDAO();
                 model.PersonagemId = id;
@@ -567,23 +592,23 @@ namespace FichaRPG.Controllers
 
         }
         [HttpPost]
-        public IActionResult Ritual(int id)
+        public IActionResult Ritual(int ritualId)
         {
-            TempData["Personagem"] = JsonConvert.SerializeObject(id);
+            HttpContext.Session.SetInt32("RitualId", ritualId);
 
             return RedirectToAction("Create", "Ritual");
         }
         [HttpPost]
         public IActionResult Arma(int armaId)
         {
-            TempData["ArmaId"] = JsonConvert.SerializeObject(armaId);
+            HttpContext.Session.SetInt32("ArmaId",armaId);
 
             return RedirectToAction("Create", "Arma");
         }
         [HttpPost]
         public IActionResult Item(int itemId)
         {
-            TempData["ItemId"] = JsonConvert.SerializeObject(itemId);
+            HttpContext.Session.SetInt32("ItemId", itemId);
 
             return RedirectToAction("Create", "Item");
         }

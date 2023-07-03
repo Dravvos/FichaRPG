@@ -23,6 +23,7 @@ namespace FichaRPG
         public void ConfigureServices(IServiceCollection services)
         {
             // Add other services as needed
+            services.AddMvc().AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
             services.AddSession(options =>
             {

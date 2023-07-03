@@ -1,5 +1,6 @@
 ﻿using FichaRPG.DAO;
 using FichaRPG.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -17,27 +18,36 @@ namespace FichaRPG.Controllers
         [HttpGet]
         public override IActionResult Create()
         {
-            if (TempData["ArmaId"] != null)
+            if (HttpContext.Session.GetInt32("ArmaId") != 0 && HttpContext.Session.GetInt32("ArmaId") != null)
             {
-                ViewBag.Personagem = JsonConvert.DeserializeObject(TempData["ArmaId"].ToString());
+                ViewBag.Personagem = HttpContext.Session.GetInt32("ArmaId");
 
                 return base.Create();
             }
-            return Json("ERRO! ArmaId está nulo");
+            return Json("ERRO! PersonagemId está nulo");
+        }
+        public IActionResult Editar(int id, int personagemId)
+        {
+
+            ViewBag.Personagem = personagemId;
+
+            return base.Edit(id);
+
         }
         protected override void ValidaDados(ArmasViewModel model, string operacao)
         {
+            ModelState.Clear();
             if (model.Categoria.IndexOf("I") == -1 || !model.Categoria.Contains("I"))
                 ModelState.AddModelError("categoria", "Digite a categoria como números romanos (I, II, III, IV ou 0)");
             if (string.Equals(model.Categoria, "0"))
                 ModelState.Remove("categoria");
-            if (model.Dano.IndexOf('d')==-1)
+            if (model.Dano.IndexOf('d') == -1)
                 ModelState.AddModelError("dano", "Digite o formato correto de dano da arma. Ex:2d8+6");
             if (model.Critico.IndexOf('d') == -1)
                 ModelState.AddModelError("critico", "Digite o formato correto de dano crítico da arma. Ex:4d8+6");
-            if (model.Espaco<0)
+            if (model.Espaco < 0)
                 ModelState.AddModelError("espaco", "Digite o espaço que o item ocupa");
-            if (!string.Equals(operacao,"I"))
+            if (!string.Equals(operacao, "I"))
                 ModelState.Remove("PersonagemId");
 
         }
@@ -55,12 +65,12 @@ namespace FichaRPG.Controllers
                 }
                 else
                 {
-                    if (string.Equals(operacao , "I"))
+                    if (string.Equals(operacao, "I"))
                         DAO.Insert(model);
                     else
                         DAO.Update(model);
 
-                    return RedirectToAction(NomeViewIndex,"Personagem");
+                    return RedirectToAction("Details", "Personagem", new { id = model.PersonagemId });
                 }
             }
             catch (Exception erro)
@@ -73,7 +83,7 @@ namespace FichaRPG.Controllers
             try
             {
                 DAO.Delete(id);
-                return RedirectToAction(NomeViewIndex,"Personagem");
+                return RedirectToAction("Details", "Personagem", new { id = HttpContext.Session.GetInt32("PersonagemId") });
             }
             catch (Exception erro)
             {

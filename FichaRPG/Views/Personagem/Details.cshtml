@@ -44,12 +44,12 @@
             <div class="coluna">
                 <div class="detalhes">
                     <div class="detalhes-header">
-                        <div class="float-left">
+                        <div class="float-end">
                             <button class="btn btn-sm text-white">
                                 <i class="fa fa-copy"></i>
                             </button>
                         </div>
-                        <div class="float-right">
+                        <div class="float-start">
                             <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
@@ -121,12 +121,12 @@
             <div class="coluna">
                 <div class="detalhes">
                     <div class="detalhes-header">
-                        <div class="float-left">
+                        <div class="float-end">
                             <button class="btn btn-sm text-white">
                                 <i class="fa fa-copy">Just</i>
                             </button>
                         </div>
-                        <div class="float-right">
+                        <div class="float-start">
                             <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
@@ -152,7 +152,7 @@
                                     -1
                                 </button>
 
-                                <button onclick="AdicionaMaisCinco('vida')" class="btn btn-sm icone float-right">
+                                <button onclick="AdicionaMaisCinco('vida')" class="btn btn-sm icone float-start">
                                     +5
                                     <i class="fa fa-chevron-right">
                                     </i>
@@ -160,7 +160,7 @@
                                     </i>
                                     
                                 </button>
-                                <button onclick="AdicionaMaisUm('vida')" class="btn btn-sm icone float-right">
+                                <button onclick="AdicionaMaisUm('vida')" class="btn btn-sm icone float-start">
                                     +1
                                     <i class="fa fa-chevron-right">
                                     </i>
@@ -184,7 +184,7 @@
                                     -1
                                 </button>
 
-                                <button onclick="AumentaMaisCinco('sanidade')" class="btn btn-sm icone float-right">
+                                <button onclick="AumentaMaisCinco('sanidade')" class="btn btn-sm icone float-start">
                                     +5
                                     <i class="fa fa-chevron-right">
                                     </i>
@@ -192,7 +192,7 @@
                                     </i>
                                     
                                 </button>
-                                <button onclick="AdicionaMaisUm('sanidade')" class="btn btn-sm icone float-right">
+                                <button onclick="AdicionaMaisUm('sanidade')" class="btn btn-sm icone float-start">
                                     +1
                                     <i class="fa fa-chevron-right">
                                     </i>
@@ -216,7 +216,7 @@
                                     -1
                                 </button>
 
-                                <button onclick="AumentaMaisCinco('pontos de esforço')" class="btn btn-sm icone float-right">
+                                <button onclick="AumentaMaisCinco('pontos de esforço')" class="btn btn-sm icone float-start">
                                     +5
                                     <i class="fa fa-chevron-right">
                                     </i>
@@ -224,7 +224,7 @@
                                     </i>
                                     
                                 </button>
-                                <button onclick="AdicionaMaisUm('pontos de esforço')" class="btn btn-sm icone float-right">
+                                <button onclick="AdicionaMaisUm('pontos de esforço')" class="btn btn-sm icone float-start">
                                     +1
                                     <i class="fa fa-chevron-right">
                                     </i>
@@ -244,12 +244,12 @@
             <div class="coluna">
                 <div class="detalhes">
                     <div class="detalhes-header">
-                        <div class="float-left">
+                        <div class="float-end">
                             <button class="btn btn-sm text-white">
                                 <i class="fa fa-copy">Just</i>
                             </button>
                         </div>
-                        <div class="float-right">
+                        <div class="float-start">
                             <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
@@ -276,12 +276,12 @@
             <div class="coluna">
                 <div class="detalhes">
                     <div class="detalhes-header">
-                        <div class="float-left">
+                        <div class="float-end">
                             <button class="btn btn-sm text-white">
                                 <i class="fa fa-copy">Just</i>
                             </button>
                         </div>
-                        <div class="float-right">
+                        <div class="float-start">
                             <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
@@ -334,17 +334,17 @@
             <div class="coluna">
                 <div class="detalhes">
                     <div class="detalhes-header">
-                        <div class="float-left">
+                        <div class="float-end">
                             <button class="btn btn-sm text-white">
                                 <i class="fa fa-copy"></i>
                             </button>
                         </div>
-                        <div class="float-right">
+                        <div class="float-start">
                             <a class="btn btn-sm text-success">
                                 <i class="fa fa-2x fa-plus-square"></i>
                             </a>
                         </div>
-                        <div class="float-right">
+                        <div class="float-start">
                             <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
@@ -438,7 +438,7 @@
             <div class="coluna">
                 <div class="detalhes">
                     <div class="detalhes-header">
-                        <div class="float-right">
+                        <div class="float-start">
                             <button id="Criar" class="btn btn-sm text-success">
                                 <i class="fa fa-2x fa-plus-square"></i>
                             </button>
@@ -515,10 +515,10 @@
                 <div class="detalhes-body">
                     <div class="p-4">
                         <h3 class="text-center">Armas</h3>
-                        <div class="float-right">
+                        <div class="float-start">
                             <form asp-action="Arma">
                                 <input type="hidden" name="ArmaId" value="@Model.Id" />
-                                <button type="submit" class="btn btn-sm text-success">
+                                <button type="submit" style="float:right" class="btn btn-sm text-success">
                                     <i class="fa fa-plus-square"></i>
                                 </button>
                             </form>
@@ -548,10 +548,10 @@
                                         </td>
                                         <td class="rpg-td">
                                             @armas.ElementAt(i).Critico
-                                            <a href="~/Arma/Edit?id=@armas.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                            <a href="~/Arma/Editar?id=@armas.ElementAt(i).Id&personagemId=@Model.Id" class="btn btn-sm text-warning float-start">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <button onclick="javascript:apagarArma(@armas.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
+                                            <button onclick="javascript:apagarArma(@armas.ElementAt(i).Id)" class="btn btn-sm text-danger float-start">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
@@ -559,11 +559,13 @@
                                 }
                             </tbody>
                         </table>
+
+
                         <h3 class="text-center">Itens</h3>
-                        <div class="float-right">
+                        <div class="float-start">
                             <form asp-action="Item">
                                 <input type="hidden" name="ItemId" value="@Model.Id" />
-                                <button type="submit" class="btn btn-sm text-success">
+                                <button type="submit" style="float:right" class="btn btn-sm text-success">
                                     <i class="fa fa-plus-square"></i>
                                 </button>
                             </form>
@@ -585,10 +587,10 @@
                                         </td>
                                         <td class="rpg-td">
                                             @itens.ElementAt(i).Descricao
-                                            <a href="~/Item/Edit?id=@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                            <a href="~/Item/Editar?id=@itens.ElementAt(i).Id&personagemId=@Model.Id" class="btn btn-sm text-warning float-start">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <button onclick="javascript:apagarItem(@itens.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
+                                            <button onclick="javascript:apagarItem(@itens.ElementAt(i).Id)" class="btn btn-sm text-danger float-start">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
@@ -609,8 +611,8 @@
 
                     <div class="float-right">
                         <form asp-action="Ritual">
-                            <input type="hidden" name="id" value="@Model.Id" />
-                            <button class="btn btn-sm text-success">
+                            <input type="hidden" name="ritualId" value="@Model.Id" />
+                            <button style="float:right" class="btn btn-sm text-success">
                                 <i class="fa fa-2x fa-plus-square"></i>
                             </button>
                         </form>
@@ -638,13 +640,13 @@
                                             <div class="col-12 col-md align-content-center">
                                                 <div class="row m-1">
                                                     <div class="col-12">
-                                                        <div class="float-left">
-                                                            <a href="javascript:apagarRitual(@Rituais.ElementAt(i).Id,@Model.Id)" class="btn btn-sm float-left text-danger">
+                                                        <div class="float-end">
+                                                            <a href="javascript:apagarRitual(@Rituais.ElementAt(i).Id,@Model.Id)" class="btn btn-sm float-end text-danger">
                                                                 <i class="fa 2x fa-trash"></i>
                                                             </a>
                                                         </div>
-                                                        <div class="float-right">
-                                                            <a href="~/Ritual/Editar?id=@Rituais.ElementAt(i).Id&personagemId=@Model.Id" class="btn btn-sm float-right text-warning">
+                                                        <div class="float-start">
+                                                            <a href="~/Ritual/Editar?id=@Rituais.ElementAt(i).Id&personagemId=@Model.Id" class="btn btn-sm float-start text-warning">
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
                                                         </div>
@@ -653,7 +655,7 @@
 
                                                         <div class="position-relative">
 
-                                                            <span class="form-control form-control-sm fundo text-light">Nome: <b>@Rituais.ElementAt(i).Nome</b> </span>
+                                                            <span class="text-end form-control-sm form-control fundo text-light">Nome: <b>@Rituais.ElementAt(i).Nome</b> </span>
                                                         </div>
                                                     </div>
                                                     <div class="coluna">

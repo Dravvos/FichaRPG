@@ -125,7 +125,7 @@ criar.onclick = function () {
     let nomeDado = document.getElementById("dNome");
     let dado = document.getElementById("dValor");
     let dano = document.getElementById("switchDano");
-    let x = dado.value.replace("+", "m");
+    let x = dado.value.replaceAll("+", "m");
     var linkAPI1 = '/Personagem/CriaDadoPersonalizado?id=' + id.value + "&nome=" + nomeDado.value + "&dado=" + x + "&dano=" + dano.checked;
     $.ajax({
         type: "POST",
@@ -157,11 +157,49 @@ customizado.onclick = function () {
 
     for (let i = 0; i < descendentes.length; i++) {
         descendentes[i].addEventListener("click", function (e) {
+            numero.textContent = "";
+            let dadosDigitados = dados.get("ValorDado-" + i).value;
+            let numerosGerados = [];
+            const dadosSeparados = dadosDigitados.split('+');
+            modal.style.display = "block";
+            dadosSeparados.forEach(dado => {
+                if (dado.includes('d')) {
+                    const [qtd, faces] = dado.split('d').map(Number);
+                    if (!isNaN(qtd) && !isNaN(faces)) {
+                        const resultados = [];
+                        for (let i = 0; i < qtd; i++) {
+                            const resultado = Math.floor(Math.random() * faces) + 1;
+                            resultados.push(resultado);
+                            numerosGerados.push(resultado);
+                        }
 
-            let valor = dados.get("ValorDado-" + i).value;
+                        const sum = resultados.reduce((accumulator, current) => accumulator + current, 0);
+                        total += damage.get(i).value == "False" ?  sum: Math.max(...resultados);
+                        if (damage.get(i).value == "True") { numero.textContent=`Lançamentos de ${qtd}d${faces}: ${resultados.join(', ')}` }
+                        else {
+                            numero.textContent= `Lançamentos de ${qtd}d${faces}: Valor máximo = ${Math.max(...resultados)}`;
+                        }
+                    }
+                    else {
+                        console.log(`Expressão inválida: ${dado}`);
+                    }
+                }
+                else {
+                    const constante = Number(dado);
+                    if (!isNaN(constante)) {
+                        total += constante;
+                    }
+                    else {
+                        console.log(`Expressão inválida: ${dado}`);
+                    }
+                }
+            });
+            console.log(`Todos os números gerados: ${allRolls.join(', ')}`);
+            /*let valor = dados.get("ValorDado-" + i).value;
             let d = valor.indexOf("d");
-            let mais = valor.indexOf("+");
-            let adicional = valor.substring(mais + 1, valor.length);
+            let mais = valor.split("+");
+            let indexMais = valor.indexOf("+");
+            let adicional = valor.substring(indexMais + 1, valor.length);
             let qtdDados = valor.substring(0, d);
             let faces = parseInt(valor.substring(d + 1, valor.length));
 
@@ -220,6 +258,7 @@ customizado.onclick = function () {
                 }
 
             }
+            */
         }
 
         )

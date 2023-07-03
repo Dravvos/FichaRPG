@@ -4,32 +4,40 @@
 }
 <head>
     <link rel="stylesheet" href="/css/Ritual.css" />
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
 </head>
 
-<div class="Ritual">
+<div class="Ritual bg-black">
     <div class="Ritual-Content">
         <div class="Ritual-Header justify-content-center">
             <h3 class="text-center">Adicionar Ritual</h3>
         </div>
         <form class="Ritual-Body" asp-action="Save" method="post">
-            <input type="hidden" name="Operacao" id="Operacao" value="@ViewBag.Operacao"/>
-            @if(ViewBag.Operacao=="I")
+            <input type="hidden" name="Operacao" id="Operacao" value="@ViewBag.Operacao" />
+            @if (ViewBag.Operacao == "I")
             {
                 <input type="text" hidden name="Persona-id" id="Persona-id" value="@ViewBag.Personagem" />
             }
-            else{
-                <input type="hidden" asp-for="Id"/>
+            else
+            {
+                <input type="hidden" asp-for="Id" />
             }
             <h3 class="mt-3">Detalhes do Ritual</h3>
-            <div class="row">
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0 ">Nome do Ritual:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Nome" required />
+
+
+            <div class="row m-3">
+
+
+                <div class="col-3">
+                    <label>Nome do Ritual:</label>
+                    <input required class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Nome" />
+                    <span class="text-danger" asp-validation-for="Nome"></span>
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0">Elemento:</label>
-                    <select class="Ritual-Input border-left-0" asp-for="Elemento" required>
+
+                <div class="col-3">
+
+                    <label>Elemento:</label>
+                    <select class="form-select-sm w-50 bg-black text-white border border-white" asp-for="Elemento">
                         <option value="Sangue">Sangue</option>
                         <option value="Morte">Morte</option>
                         <option value="Energia">Energia</option>
@@ -37,51 +45,67 @@
                         <option value="Medo">Medo</option>
                     </select>
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0 ">Círculo:</label>
-                    <input class="Ritual-Input border-left-0" min="1" max="4" asp-for="Circulo" required />
+
+
+                <div class="col-3">
+                    <label>Círculo:</label>
+                    <input required min="1" max="4" type="number" class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Circulo" />
+                    <span class="text-danger" asp-validation-for="Circulo"></span>
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0">Execução:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Execucao" required />
+
+                <div class="col-3">
+                    <label>Execução:</label>
+                    <input required class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Execucao" />
+                    <span class="text-danger" asp-validation-for="Execucao"></span>
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0 ">Alcance:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Alcance" required />
+
+                <div class="col-3">
+                    <label>Alcance:</label>
+                    <input required class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Alcance" />
+                    <span class="text-danger" asp-validation-for="Efeito"></span>
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0">Efeito:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Efeito" required />
+
+                <div class="col-3">
+                    <label>Efeito:</label>
+                    <input required class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Efeito" />
+                    <span class="text-danger" asp-validation-for="Efeito"></span>
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0 ">Duração:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Duracao" required />
+
+                <div class="col-3">
+                    <label>Duração:</label>
+                    <input required class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Duracao" />
+                    <span class="text-danger" asp-validation-for="Duracao"></span>
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0">Resistência:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Resistencia" />
+
+                <div class="col-3">
+                    <label>Resitência:</label>
+                    <input class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Resistencia" />
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0 ">Discente:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Discente" />
+
+                <div class="col-3">
+                    <label>Discente:</label>
+                    <input class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Discente" />
                 </div>
-                <div class="Ritual-Input-Group">
-                    <label class="ml-1 border-right-0">Verdadeiro:</label>
-                    <input class="Ritual-Input border-left-0" asp-for="Verdadeiro" />
+
+                <div class="col-3">
+                    <label>Verdadeiro:</label>
+                    <input class="form-control-sm w-50 bg-black text-white border border-white" asp-for="Verdadeiro" />
                 </div>
+
             </div>
 
-            <div class="clearfix mt-3">
-                <a style="font-weight:500" href="/Personagem/Details?id=@ViewBag.Personagem" class="btn btn-danger float-left">Voltar</a>
-                @if (@ViewBag.Operacao == "I")
-                {
-                    <button id="CriarRitual" type="submit" class="btn Rpg-Button float-right">Criar</button>
-                }
-                else
-                {
-                    <button id="CriarRitual" type="submit" class="btn Rpg-Button float-right">Salvar</button>
-                }
-            </div>
+
+            <a style="font-weight:500" href="/Personagem/Details?id=@ViewBag.Personagem" class="btn btn-danger float-left">Voltar</a>
+            @if (@ViewBag.Operacao == "I")
+            {
+                <button id="CriarRitual" type="submit" class="btn Rpg-Button float-start">Criar</button>
+            }
+            else
+            {
+                <button id="CriarRitual" type="submit" class="btn Rpg-Button float-end">Salvar</button>
+            }
+
+
         </form>
     </div>
 </div>

@@ -6,8 +6,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FichaRPG</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - Ficha de RPG</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-utilities.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css" />
+
+
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/all.min.css"/>    
     <link rel="stylesheet" href="~/css/fontawesome.min.css"/>
@@ -60,12 +67,14 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - FichaRPG - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-white">
+            &copy; @DateTime.Now.Year - Ficha de RPG - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery-3.7.0.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/Personagem.js" asp-append-version="true"></script>
     <script src="~/js/Details.js" asp-append-version="true"></script>

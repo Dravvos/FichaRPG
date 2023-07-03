@@ -235,7 +235,7 @@ end
 go
 
 create proc spUpdate_Armas(@id int,@nome varchar(200),@dano varchar(200),@espaco int,
-							@categoria varchar(2),@alcance varchar(100),@tipo varchar(200),@critico varchar(200))
+							@categoria varchar(3),@alcance varchar(100),@tipo varchar(200),@critico varchar(200))
 as begin
 	update Armas set nome=@nome,tipo=@tipo,espaco=@espaco,
 	categoria=@categoria,alcance=@alcance,dano=@dano,critico=@critico
