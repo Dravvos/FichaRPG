@@ -37,7 +37,7 @@ namespace FichaRPG
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Configure other middleware as needed
-            ConexaoBD.Conexao = Environment.GetEnvironmentVariable("RPGConnection");
+
             app.UseRouting();
             if (env.IsDevelopment())
             {
