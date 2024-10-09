@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FichaRPG.DAO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,7 @@ namespace FichaRPG
 
         public IConfiguration Configuration { get; }
 
-
+        
         public void ConfigureServices(IServiceCollection services)
         {
             // Add other services as needed
@@ -36,7 +37,7 @@ namespace FichaRPG
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Configure other middleware as needed
-
+            ConexaoBD.Conexao = Configuration.GetConnectionString("DefaultConnection");
             app.UseRouting();
             if (env.IsDevelopment())
             {

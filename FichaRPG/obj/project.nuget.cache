@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PWWOETyMkmdckhPhvzqERdgrxZ21rj8XtSj+gpfdB+Wz3W0ukMKrxeYMA5qSjAFKXJrg8azTrLVFLSBuCy6BXw==",
+  "dgSpecHash": "APsslkfaFsMn6sKsp5KYIBwrRzyVMni8rcD8aPPb0MBJY3NqFCfQg65t4zIEjhYCv5ZeSK1BjNA19ZFmEtXXlQ==",
   "success": true,
   "projectFilePath": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\FichaRPG.csproj",
   "expectedPackageFiles": [
@@ -62,7 +62,7 @@
     "C:\\Users\\Daniel\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
-    "C:\\Users\\Daniel\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
+    "C:\\Users\\Daniel\\.nuget\\packages\\system.data.sqlclient\\4.8.6\\system.data.sqlclient.4.8.6.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.8.0\\system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512",
