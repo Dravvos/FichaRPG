@@ -17,7 +17,7 @@ jobs:
         dotnet-version: '6.x.x'
     
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./FichaRPG/FichaRPG.sln
     
     - name: Build
       run: dotnet build ./FichaRPG/FichaRPG.sln -c Release --no-restore
