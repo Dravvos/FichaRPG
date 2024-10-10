@@ -35,10 +35,11 @@ jobs:
       with:
           username: ${{secrets.VM_USERNAME}}
           server: ${{secrets.VM_HOST}}
-          ssh_private_key: ${{secrets.SSH_PRIVATE_KEY}}
+          password: ${{secrets.VM_PASSWORD}}
           local_path: './publish'
           remote_path: '/home/capitao-tchaka/Release/net6.0'
           port: 22
+          sftpArgs: '-o ConnectTimeout=5'
     
     - name: Restart service
       uses: appleboy/ssh-action@master
