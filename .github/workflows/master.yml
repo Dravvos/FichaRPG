@@ -34,8 +34,7 @@ jobs:
         AZURE_SUBNET_NAME: ${{secrets.AZURE_SUBNET_NAME}}
       with:
           username: ${{secrets.VM_USERNAME}}
-          host: ${{secrets.VM_HOST}}
-          key: ${{secrets.SSH_PRIVATE_KEY }} 
+          server: ${{secrets.VM_HOST}}
           password: ${{secrets.VM_PASSWORD}}
           local_path: './publish'
           remote_path: '/home/capitao-tchaka/Release/net6.0'
