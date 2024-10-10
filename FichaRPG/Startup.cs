@@ -32,12 +32,13 @@ namespace FichaRPG
                 options.IdleTimeout = TimeSpan.FromSeconds(1200);
             });
             services.AddRazorPages();
+          
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Configure other middleware as needed
-
+            app.UsePathBase("/FichaRPG");
             app.UseRouting();
             if (env.IsDevelopment())
             {

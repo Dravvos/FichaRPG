@@ -25,7 +25,7 @@
     <header >
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white  box-shadow mb-3 nav-topo">
             <div class="container">
-                <a class="navbar-brand" href="~/Home/Index">FichaRPG</a>
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">FichaRPG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,25 +34,25 @@
                     <ul class="navbar-nav flex-grow-1">
                        
                         <li class="nav-item">
-                            <a class="nav-link nav-topo" href="~/Home/Index" >Home</a>
+                            <a class="nav-link nav-topo" href="@Url.Action("Index","Home")">Home</a>
                         </li>
                         @if (ViewBag.Logado == true)
                         {
                             <li class="nav-item">
-                                <a class="nav-link nav-topo" href="~/Personagem/Index">Personagens</a>
+                                <a class="nav-link nav-topo" href="@Url.Action("Index","Personagem")">Personagens</a>
                             </li>
                             
                          <li class="nav-item text-right">
-                            <a class="nav-link nav-topo" href="~/Login/Logoff">Sair</a>
+                                <a class="nav-link nav-topo" href="@Url.Action("Logoff","Login")">Sair</a>
                         </li>
                         }
                         else
                         {
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" href="~/Usuario/Create">Cadastrar</a>
+                                <a class="nav-link nav-topo" href="@Url.Action("Create","Usuario")">Cadastrar</a>
                             </li>
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" href="~/Login/Index" >Entrar</a>
+                                <a class="nav-link nav-topo" href="@Url.Action("Index","Login")">Entrar</a>
                             </li>
                         }
                     </ul>
@@ -68,7 +68,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container text-white">
-            &copy; @DateTime.Now.Year - Ficha de RPG - <a href="~/home/Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - Ficha de RPG - <a @Url.Action("Privacy", "Home")>Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery-3.7.0.min.js"></script>
@@ -82,5 +82,6 @@
     <script src="~/js/fontawesome.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

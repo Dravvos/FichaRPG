@@ -3,7 +3,7 @@
 @{
 
     var personagemDAO = new PersonagemDAO();
-    var personagens=personagemDAO.ListarPersonagensPorUsuario(ViewBag.Usuario);
+    List<PersonagemViewModel> personagens=personagemDAO.ListarPersonagensPorUsuario(ViewBag.Usuario);
 }
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -34,7 +34,7 @@
 
                                     <textarea style="height:100px" class="text-white bg-dark w-100">@Personagem.Historia</textarea>
                                     <div class="rpg-card-footer">
-                                        <a class="btn btn-outline-primary" href="/Personagem/Details?id=@Personagem.Id">Dar uma Olhada - @Personagem.Nome</a>
+                                        <a class="btn btn-outline-primary" href= "@Url.Action($"Details?id={Personagem.Id}","Personagem")">Dar uma Olhada - @Personagem.Nome</a>
                                     </div>
                                 </div>
                             </div>
