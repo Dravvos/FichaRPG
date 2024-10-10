@@ -35,7 +35,7 @@ jobs:
       with:
           username: ${{secrets.VM_USERNAME}}
           server: ${{secrets.VM_HOST}}
-          password: ${{secrets.VM_PASSWORD}}
+          ssh_private_key: ${{secrets.SSH_PRIVATE_KEY}}
           local_path: './publish'
           remote_path: '/home/capitao-tchaka/Release/net6.0'
           port: 22
