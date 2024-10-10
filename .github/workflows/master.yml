@@ -26,14 +26,19 @@ jobs:
       run: dotnet publish ./FichaRPG/FichaRPG.sln -c Release --no-build -o ./publish
     
     - name: Deploy to FichaRPG
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      uses: appleboy/scp-action@master
       with:
-          username: ${{secrets.VM_USERNAME}}
-          server: ${{secrets.VM_HOST}}
-          password: ${{secrets.VM_PASSWORD }} 
-          local_path: './publish'
-          remote_path: '/home/capitao-tchaka/Release/net6.0'
-          port: 22
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USERNAME }}
+        password: ${{ secrets.VM_PASSWORD }}
+        source: './publish'
+        target: '/home/capitao-tchaka/Release/net6.0'
+        port: 22
+      env:
+        AZURE_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+        AZURE_RESOURCE_GROUP: ${{secrets.AZURE_RESOURCE_GROUP_NAME}} 
+        AZURE_VNET_NAME: ${{secrets.AZURE_VNET_NAME}}
+        AZURE_SUBNET_NAME: ${{secrets.AZURE_SUBNET_NAME}}
     
     - name: Restart service
       uses: appleboy/ssh-action@master
@@ -45,3 +50,7 @@ jobs:
           echo "${{ secrets.VM_PASSWORD }}" | sudo -S systemctl restart ficha-rpg.service
       env:
         VM_PASSWORD: ${{ secrets.VM_PASSWORD }}
+        AZURE_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+        AZURE_RESOURCE_GROUP: ${{secrets.AZURE_RESOURCE_GROUP_NAME}} 
+        AZURE_VNET_NAME: ${{secrets.AZURE_VNET_NAME}}
+        AZURE_SUBNET_NAME: ${{secrets.AZURE_SUBNET_NAME}}
