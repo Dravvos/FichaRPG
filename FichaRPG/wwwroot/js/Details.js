@@ -126,7 +126,7 @@ criar.onclick = function () {
     let dado = document.getElementById("dValor");
     let dano = document.getElementById("switchDano");
     let x = dado.value.replaceAll("+", "m");
-    var linkAPI1 = '~/Personagem/CriaDadoPersonalizado?id=' + id.value + "&nome=" + nomeDado.value + "&dado=" + x + "&dano=" + dano.checked;
+    var linkAPI1 = '/Personagem/CriaDadoPersonalizado?id=' + id.value + "&nome=" + nomeDado.value + "&dado=" + x + "&dano=" + dano.checked;
     $.ajax({
         type: "POST",
         url: linkAPI1,
@@ -341,7 +341,7 @@ function PopupTreinado(pericia, atributo, num) {
 Vida.onchange = function () {
 
 
-    var linkAPI1 = '~/Personagem/AtualizaVida?id=' + id.value + "&vida=" + Vida.value;
+    var linkAPI1 = '/Personagem/AtualizaVida?id=' + id.value + "&vida=" + Vida.value;
     $.ajax({
         type: "POST",
         url: linkAPI1,
@@ -357,7 +357,7 @@ Vida.onchange = function () {
 Sanidade.onchange = function () {
 
 
-    var linkAPI2 = '~/Personagem/AtualizaSanidade?id=' + id.value + "&sanidade=" + Sanidade.value;
+    var linkAPI2 = '/Personagem/AtualizaSanidade?id=' + id.value + "&sanidade=" + Sanidade.value;
     $.ajax({
         type: "POST",
         url: linkAPI2,
@@ -373,7 +373,7 @@ Sanidade.onchange = function () {
 Pe.onchange = function () {
 
 
-    var linkAPI3 = '~/Personagem/AtualizaPe?id=' + id.value + "&pe=" + Pe.value;
+    var linkAPI3 = '/Personagem/AtualizaPe?id=' + id.value + "&pe=" + Pe.value;
     $.ajax({
         type: "POST",
         url: linkAPI3,
@@ -494,7 +494,7 @@ presenca.onclick = function () {
 }
 
 function AdicionaMaisUm(caracteristica) {
-    var linkAPI1 = '~/Personagem/AdicionaUm?id=' + id.value + "&caracteristica="+caracteristica.toString();
+    var linkAPI1 = '/Personagem/AdicionaUm?id=' + id.value + "&caracteristica="+caracteristica.toString();
     $.ajax({
         type: "POST",
         url: linkAPI1,
@@ -522,7 +522,7 @@ function AdicionaMaisUm(caracteristica) {
 }
 
 function AdicionaMaisCinco(caracteristica) {
-    var linkAPI1 = '~/Personagem/AdicionaCinco?id=' + id.value + "&caracteristica=" + caracteristica.toString();
+    var linkAPI1 = '/Personagem/AdicionaCinco?id=' + id.value + "&caracteristica=" + caracteristica.toString();
     $.ajax({
         type: "POST",
         url: linkAPI1,
@@ -550,7 +550,7 @@ function AdicionaMaisCinco(caracteristica) {
 }
 
 function DiminuiMenosUm(caracteristica) {
-    var linkAPI1 = '~/Personagem/DiminuiUm?id=' + id.value + "&caracteristica=" + caracteristica.toString();
+    var linkAPI1 = '/Personagem/DiminuiUm?id=' + id.value + "&caracteristica=" + caracteristica.toString();
     $.ajax({
         type: "POST",
         url: linkAPI1,
@@ -578,7 +578,7 @@ function DiminuiMenosUm(caracteristica) {
 }
 
 function DiminuiMenosCinco(caracteristica) {
-    var linkAPI1 = '~/Personagem/DiminuiCinco?id=' + id.value + "&caracteristica=" + caracteristica.toString();
+    var linkAPI1 = '/Personagem/DiminuiCinco?id=' + id.value + "&caracteristica=" + caracteristica.toString();
     $.ajax({
         type: "POST",
         url: linkAPI1,
