@@ -33,6 +33,7 @@ jobs:
         password: ${{ secrets.VM_PASSWORD }}
         source: "./publish"
         target: "/home/capitao-tchaka/Release/net6.0/publish"
+        port: 22
     
     - name: Restart service
       uses: appleboy/ssh-action@master
