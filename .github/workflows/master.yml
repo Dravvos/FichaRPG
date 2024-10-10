@@ -28,18 +28,19 @@ jobs:
     - name: Deploy to FichaRPG
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-          username: 'capitao-tchaka'
+          username: ${{secrets.VM_USERNAME}}
           server: ${{secrets.VM_HOST}}
           ssh_private_key: ${{secrets.VM_PASSWORD }} 
           local_path: './publish'
           remote_path: '/home/capitao-tchaka/Release/net6.0/publish'
+          port: 22
     
     - name: Restart service
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USERNAME }}
-        password: ${{ secrets.VM_PASSWORD }}
+        host: ${{secrets.VM_HOST}}
+        username: ${{secrets.VM_USERNAME}}
+        password: ${{secrets.VM_PASSWORD}}
         script: |
           sudo systemctl restart ficha-rpg.service
           
