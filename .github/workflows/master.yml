@@ -26,16 +26,13 @@ jobs:
       run: dotnet publish ./FichaRPG/FichaRPG.sln -c Release --no-build -o ./publish
     
     - name: Deploy to FichaRPG
-      uses: atlassian/generic-sftp-deploy@v1.0.0
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.VM_PASSWORD }}
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-        server: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USERNAME }}
-        port: 22 
-        source: './publish'
-        target: '/home/ubuntu/flatbread/'
-        protocol: sftp
+          username: 'capitao-tchaka'
+          server: ${{secrets.VM_HOST}}
+          ssh_private_key: ${{secrets.VM_PASSWORD }} 
+          local_path: './publish'
+          remote_path: '/home/capitao-tchaka/Release/net6.0/publish'
     
     - name: Restart service
       uses: appleboy/ssh-action@master
