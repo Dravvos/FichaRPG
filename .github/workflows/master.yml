@@ -20,7 +20,7 @@ jobs:
       run: dotnet restore
     
     - name: Build
-      run: dotnet build -c Release
+      run: dotnet build ./FichaRPG/FichaRPG.sln -c Release --no-restore
     
     - name: Publish
       run: dotnet publish -c Release -o ./publish
