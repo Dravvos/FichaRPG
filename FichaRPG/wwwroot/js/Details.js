@@ -531,17 +531,17 @@ function AdicionaMaisCinco(caracteristica) {
             console.log(data);
 
             if (caracteristica === "pontos de esforço") {
-                Pe.value = data;
-                AtualizaPe();
+                Pe.value = data;                
             }
             if (caracteristica === "sanidade") {
-                Sanidade.value = data;
-                AtualizaSan();
+                Sanidade.value = data;                
             }
             if (caracteristica === "vida") {
-                Vida.value = data;
-                AtualizaPv();
+                Vida.value = data;             
             }
+            AtualizaPe();
+            AtualizaSan();
+            AtualizaPv();
         },
         error: function (request, status, erro) {
             console.log(erro.toString());
