@@ -46,7 +46,7 @@ function GetSelectedValue() {
 window.addEventListener("load", function (e) {
 
     if (ddlNex >= 10 && GetSelectedValue() == 1) {
-        var linkAPI1 = '../Personagem/PreparaListaTrilhasCombatente/';
+        var linkAPI1 = basePath + 'Personagem/PreparaListaTrilhasCombatente/';
         $.ajax({
             url: linkAPI1,
             success: function (dados) {
@@ -61,7 +61,7 @@ window.addEventListener("load", function (e) {
     }
 
     if (ddlNex.value >= 10 && GetSelectedValue() == 2) {
-        var linkAPI2 = '../Personagem/PreparaListaTrilhasEspecialista/';
+        var linkAPI2 = basePath + 'Personagem/PreparaListaTrilhasEspecialista/';
         $.ajax({
             url: linkAPI2,
             success: function (dados) {
@@ -80,7 +80,7 @@ window.addEventListener("load", function (e) {
     }
 
     if (ddlNex.value >= 10 && GetSelectedValue() == 3) {
-        var linkAPI3 = '../Personagem/PreparaListaTrilhasOcultista/';
+        var linkAPI3 = basePath + 'Personagem/PreparaListaTrilhasOcultista/';
         $.ajax({
             url: linkAPI3,
             success: function (dados) {
@@ -111,7 +111,8 @@ window.addEventListener("load", function (e) {
 
 
 ddlClasse.onchange = function () {
-    var linkAPI1 = '../Personagem/PreparaListaTrilhasCombatente/';
+
+    var linkAPI1 = basePath + 'Personagem/PreparaListaTrilhasCombatente/';
     if (ddlNex.value >= 10 && GetSelectedValue() == 1) {
         $.ajax({
             url: linkAPI1,
@@ -123,9 +124,9 @@ ddlClasse.onchange = function () {
                 }
 
             }
-        })  
+        })
     }
-    var linkAPI2 = '../Personagem/PreparaListaTrilhasEspecialista/';
+    var linkAPI2 = basePath + 'Personagem/PreparaListaTrilhasEspecialista/';
 
     if (ddlNex.value >= 10 && GetSelectedValue() == 2) {
         $.ajax({
@@ -141,7 +142,7 @@ ddlClasse.onchange = function () {
         })
     }
 
-    var linkAPI3 = '../Personagem/PreparaListaTrilhasOcultista/';
+    var linkAPI3 = basePath + 'Personagem/PreparaListaTrilhasOcultista/';
 
     if (ddlNex.value >= 10 && GetSelectedValue() == 3) {
         $.ajax({

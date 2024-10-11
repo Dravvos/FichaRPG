@@ -1,4 +1,6 @@
-﻿function apagarRitual(RitualId, PersonagemId) {
+﻿const basePath = `${window.location.protocol}//${window.location.host}/FichaRPG/`;
+
+function apagarRitual(RitualId, PersonagemId) {
     new swal({
         title: "Você tem certeza?",
         text: "Uma vez deletado, você não conseguirá recuperar este registro",
