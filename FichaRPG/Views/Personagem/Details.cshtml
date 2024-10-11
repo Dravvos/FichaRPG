@@ -50,7 +50,7 @@
                             </button>
                         </div>
                         <div class="float-start">
-                            <a href="@Url.Action($"Edit?id={Model.Id}","Personagem")" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -127,7 +127,7 @@
                             </button>
                         </div>
                         <div class="float-start">
-                            <a href="@Url.Action($"Edit?id={Model.Id}","Personagem")" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -250,7 +250,7 @@
                             </button>
                         </div>
                         <div class="float-start">
-                            <a href="@Url.Action($"Edit?id={Model.Id}","Personagem")" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -282,7 +282,7 @@
                             </button>
                         </div>
                         <div class="float-start">
-                            <a href="@Url.Action($"Edit?id={Model.Id}","Personagem")" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -345,7 +345,7 @@
                             </a>
                         </div>
                         <div class="float-start">
-                            <a href="@Url.Action($"Edit?id={Model.Id}","Personagem")" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -548,7 +548,7 @@
                                         </td>
                                         <td class="rpg-td">
                                             @armas.ElementAt(i).Critico
-                                            <a href="@Url.Action($"Editar?id={armas.ElementAt(i).Id}&personagemId={Model.Id}","Arma")" class="btn btn-sm text-warning float-start">
+                                            <a asp-action="Editar" asp-controller="Arma" asp-route-id="@armas.ElementAt(i).Id" asp-route-personagemId="@Model.Id" class="btn btn-sm text-warning float-start">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button onclick="javascript:apagarArma(@armas.ElementAt(i).Id)" class="btn btn-sm text-danger float-start">
@@ -587,7 +587,7 @@
                                         </td>
                                         <td class="rpg-td">
                                             @itens.ElementAt(i).Descricao
-                                            <a href="@Url.Action($"Editar?id={itens.ElementAt(i).Id}&personagemId={Model.Id}","Item")" class="btn btn-sm text-warning float-start">
+                                            <a asp-action="Editar" asp-route-id="@itens.ElementAt(i).Id" asp-route-personagemId="@Model.Id" asp-controller="Item" class="btn btn-sm text-warning float-start">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button onclick="javascript:apagarItem(@itens.ElementAt(i).Id)" class="btn btn-sm text-danger float-start">
@@ -646,7 +646,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="float-start">
-                                                            <a href="@Url.Action($"Editar?id={Rituais.ElementAt(i).Id}&personagemId={Model.Id}","Ritual")" class="btn btn-sm float-start text-warning">
+                                                            <a asp-controller="Ritual" asp-action="Editar" asp-route-id="@Rituais.ElementAt(i).Id" asp-route-personagemId="@Model.Id" class="btn btn-sm float-start text-warning">
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
                                                         </div>

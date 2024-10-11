@@ -95,7 +95,7 @@
             </div>
 
 
-            <a style="font-weight:500" href="@Url.Action($"Details?id={ViewBag.Personagem}","Personagem")" class="btn btn-danger float-left">Voltar</a>
+            <a style="font-weight:500" asp-action="Details" asp-controller="Personagem" asp-route-id="@ViewBag.Personagem" class="btn btn-danger float-left">Voltar</a>
             @if (@ViewBag.Operacao == "I")
             {
                 <button id="CriarRitual" type="submit" class="btn Rpg-Button float-start">Criar</button>

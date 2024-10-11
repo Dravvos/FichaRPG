@@ -71,7 +71,6 @@ namespace FichaRPG.Controllers
         {
             try
             {
-                var personagem = new PersonagemDAO();
                 PersonagemViewModel model = DAO.Consulta(id);
                 if (model == null)
                     return RedirectToAction("Index", "Personagem");
@@ -90,6 +89,9 @@ namespace FichaRPG.Controllers
                     ViewBag.Trilha = trilha.ElementAt(0).Nome;
                 if (model != null)
                 {
+                    if(model.UsuarioId!=UsuarioLogado.Id)
+                        return RedirectToAction("Index", "Personagem");
+
                     ViewBag.User = UsuarioLogado.Nome;
                     ViewBag.Patente = patente.Nome;
                     ViewBag.Classe = classe.Nome;
