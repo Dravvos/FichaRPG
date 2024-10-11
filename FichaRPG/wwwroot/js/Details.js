@@ -388,17 +388,17 @@ Pe.onchange = function () {
 }
 
 function AtualizaPv() {
-    ddlVida.innerHTML = Vida.value;
+    ddlVida.innerText = Vida.value;
 
 }
 
 function AtualizaSan() {
-    ddlSanidade.innerHTML = Sanidade.value;
+    ddlSanidade.innerText = Sanidade.value;
 
 }
 
 function AtualizaPe() {
-    ddlPe.innerHTML = Pe.value;
+    ddlPe.innerText = Pe.value;
 
 }
 
@@ -503,17 +503,17 @@ function AdicionaMaisUm(caracteristica) {
             console.log(data);
 
             if (caracteristica === "pontos de esforço") {
-                Pe.value = data;
-                AtualizaPe();
+                Pe.value = data;                
             }
             if (caracteristica === "sanidade") {
-                Sanidade.value = data;
-                AtualizaSan();
+                Sanidade.value = data;                
             }
             if (caracteristica === "vida") {
-                Vida.value = data;
-                AtualizaPv();
+                Vida.value = data;                
             }
+            AtualizaPe();
+            AtualizaSan();
+            AtualizaPv();
         },
         error: function (request, status, erro) {
             console.log(erro.toString());
@@ -559,17 +559,17 @@ function DiminuiMenosUm(caracteristica) {
             console.log(data);
 
             if (caracteristica === "pontos de esforço") {
-                Pe.value = data;
-                AtualizaPe();
+                Pe.value = data;                
             }
             if (caracteristica === "sanidade") {
-                Sanidade.value = data;
-                AtualizaSan();
+                Sanidade.value = data;                
             }
             if (caracteristica === "vida") {
-                Vida.value = data;
-                AtualizaPv();
+                Vida.value = data;                
             }
+            AtualizaSan();
+            AtualizaPv();
+            AtualizaPe();
         },
         error: function (request, status, erro) {
             console.log(erro.toString());
@@ -588,16 +588,19 @@ function DiminuiMenosCinco(caracteristica) {
 
             if (caracteristica === "pontos de esforço") {
                 Pe.value = data;
-                AtualizaPe();
+                
             }
             if (caracteristica === "sanidade") {
                 Sanidade.value = data;
-                AtualizaSan();
+                
             }
             if (caracteristica === "vida") {
                 Vida.value = data;
-                AtualizaPv();
+                
             }
+            AtualizaPv();
+            AtualizaSan();
+            AtualizaPe();
         },
         error: function (request, status, erro) {
             console.log(erro.toString());
