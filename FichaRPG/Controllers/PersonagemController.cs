@@ -80,16 +80,13 @@ namespace FichaRPG.Controllers
                 OrigemViewModel origem = _origem.Consulta(DAO.Consulta(id).OrigemId);
                 IEnumerable<TrilhaViewModel> trilha = _trilha.Listagem().Where(a => a.Id == model.TrilhaId);
 
-                var vida = model.PontosDeVidaAtual;
-                var sanidade = model.SanidadeAtual;
-                var pe = model.PontosDeEsforcoAtual;
                 if (model.TrilhaId == null)
                     ViewBag.Trilha = "Nenhuma";
                 else
                     ViewBag.Trilha = trilha.ElementAt(0).Nome;
                 if (model != null)
                 {
-                    if(model.UsuarioId!=UsuarioLogado.Id)
+                    if (model.UsuarioId != UsuarioLogado.Id)
                         return RedirectToAction("Index", "Personagem");
 
                     ViewBag.User = UsuarioLogado.Nome;
@@ -174,8 +171,8 @@ namespace FichaRPG.Controllers
                             }
                             else
                             {
-                                model.PontosDeVidaMaximo = (short)((short) (20 + model.Vigor) + (4 + model.Vigor) * (model.Nex / 5 - 1));
-                                model.PontosDeEsforcoMaximo = (short)((short)(2 + model.Presenca)+ (2+model.Presenca)* (model.Nex / 5 - 1));
+                                model.PontosDeVidaMaximo = (short)((short)(20 + model.Vigor) + (4 + model.Vigor) * (model.Nex / 5 - 1));
+                                model.PontosDeEsforcoMaximo = (short)((short)(2 + model.Presenca) + (2 + model.Presenca) * (model.Nex / 5 - 1));
                                 model.SanidadeMaxima = (short)(12 + 3 * (model.Nex / 5 - 1));
                             }
                         }
@@ -367,16 +364,16 @@ namespace FichaRPG.Controllers
                 {
                     int[][] numeros = new int[matches.Count][];
                     int indice = 0;
-                    foreach(Match match in matches)
+                    foreach (Match match in matches)
                     {
                         int num1 = int.Parse(match.Groups[1].Value);
                         int num2 = int.Parse(match.Groups[2].Value);
                         numeros[indice] = new int[] { num1, num2 };
                         indice++;
                     }
-                    for(int i = 1; i < numeros.Length; i++)
+                    for (int i = 1; i < numeros.Length; i++)
                     {
-                        if (numeros[i][0] == numeros[i - 1][0] && numeros[i][1] == numeros[i - 1][1] && dano==false)
+                        if (numeros[i][0] == numeros[i - 1][0] && numeros[i][1] == numeros[i - 1][1] && dano == false)
                         {
                             throw new Exception("Dados diferentes faces só podem ser criados se forem de dano");
                         }
@@ -416,7 +413,7 @@ namespace FichaRPG.Controllers
             }
         }
         [HttpPost]
-        public IActionResult AdicionaUm(int id,string caracteristica)
+        public IActionResult AdicionaUm(int id, string caracteristica)
         {
             try
             {
@@ -426,15 +423,15 @@ namespace FichaRPG.Controllers
                 switch (caracteristica)
                 {
                     case "vida":
-                        model.PontosDeVidaAtual+=1;
+                        model.PontosDeVidaAtual += 1;
                         dao.UpdateVida(model);
                         return Json(model.PontosDeVidaAtual);
                     case "sanidade":
-                        model.SanidadeAtual+=1;
+                        model.SanidadeAtual += 1;
                         dao.UpdateSanidade(model);
                         return Json(model.SanidadeAtual);
                     case "pontos de esforço":
-                        model.PontosDeEsforcoAtual+=1;
+                        model.PontosDeEsforcoAtual += 1;
                         dao.UpdatePontosDeEsforco(model);
                         return Json(model.PontosDeEsforcoAtual);
                     default:
@@ -603,7 +600,7 @@ namespace FichaRPG.Controllers
         [HttpPost]
         public IActionResult Arma(int armaId)
         {
-            HttpContext.Session.SetInt32("ArmaId",armaId);
+            HttpContext.Session.SetInt32("ArmaId", armaId);
 
             return RedirectToAction("Create", "Arma");
         }

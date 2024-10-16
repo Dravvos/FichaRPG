@@ -177,3 +177,47 @@ function apagarArma(id) {
             }
         });
 }
+
+function apagarCampanha(id) {
+    new swal({
+        title: "Você tem certeza?",
+        text: "Uma vez deletado, você não conseguirá recuperar este registro",
+        icon: "warning",
+        buttons: {
+            cancel: {
+                text: "Cancelar",
+                value: null,
+                visible: true,
+                closeModal: true,
+            },
+            confirm: {
+                text: "Apagar",
+                value: true,
+                visible: true,
+                closeModal: true
+            }
+        }
+    })
+        .then((value) => {
+            if (value) {
+                new swal({
+                    text: "Deletado com sucesso",
+                    icon: "success",
+                    buttons: {
+
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            closeModal: true
+                        }
+                    }
+                }).then((value) => {
+                    if (value) {
+                        location.href = `/Campanha/Delete?Id=${id}`
+                    }
+                })
+
+            }
+        });
+}

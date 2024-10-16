@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\cadastro.css"
     },
     {
+      "Id": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\css\\campanha.css",
+      "PackagePath": "staticwebassets\\css\\campanha.css"
+    },
+    {
       "Id": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\css\\fontawesome.min.css",
       "PackagePath": "staticwebassets\\css\\fontawesome.min.css"
     },
@@ -43,6 +47,10 @@
     {
       "Id": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\images\\atributos.webp",
       "PackagePath": "staticwebassets\\images\\atributos.webp"
+    },
+    {
+      "Id": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\js\\Campanha.js",
+      "PackagePath": "staticwebassets\\js\\Campanha.js"
     },
     {
       "Id": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\js\\Details.js",

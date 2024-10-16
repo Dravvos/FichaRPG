@@ -1,0 +1,60 @@
+﻿@model CampanhaViewModel
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/campanha.css" />
+</head>
+
+<div class="container">
+    @if (ViewBag.Operacao == "I")
+    {
+        <h2 class="text-center">Criar Nova Campanha</h2>
+    }
+    else
+    {
+        <h2 class="text-center">Alterar Campanha</h2>
+    }
+
+    <form asp-action="save" enctype="multipart/form-data" style="float:left" class="container-campanha">
+        <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
+        <input hidden name="id" value="@Model.Id" />
+        <div class="row">
+            <div class="col-12 pb-4">
+                <label class="control-label">Nome: *</label>
+                <input asp-for="Nome" class="rpg-input" required />
+                <span class="text-danger" asp-validation-for="Nome"></span>
+            </div>
+            <div class="col-12">
+                <label>Descrição: </label>
+                <textarea asp-for="Descricao" class="rpg-textarea"></textarea>
+            </div>
+            <div class="col-12">
+                <label class="rpg-input-file" for="FotoCapa">Imagem da Campanha</label>
+                <input type="file" name="FotoCapa" id="FotoCapa" onchange="exibirImagem()" accept="image/png, image/jpeg, image/jpg" />
+                <img id="imgPreview" src="data:image/jpeg;base64,@Model.FotoCapaBase64" class="figure-img" />
+                <span class="text-danger" asp-validation-for="FotoCapa"></span>
+
+            </div>
+            @if (ViewBag.Operacao == "I")
+            {
+                <button type="submit" class="btn btn-block Rpg-Button" style="margin: 20px 0px;">Criar Campanha</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-block Rpg-Button" style="margin: 20px 0px;">Salvar Alterações</button>
+            }
+        </div>
+    </form>
+
+</div>
+<script>
+    function exibirImagem() {
+        var reader = new FileReader();
+        reader.readAsDataURL(document.getElementById('FotoCapa').files[0]);
+        reader.onload = function (e) {
+            document.getElementById("imgPreview").src = e.target.result;
+        }
+    }
+</script>

@@ -1,0 +1,72 @@
+﻿.container-campanha {
+    margin-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 50%
+}
+
+.campanha-row {
+    display: grid;
+    margin-top: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 3.5rem;
+    row-gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.rpg-input {
+    background-color: #191919;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    padding: 6px 12px;
+    width: 100%;
+}
+
+    .rpg-input:hover {
+        border: 2px solid rgba(128, 189, 255,0.3);
+        border-radius: 8px;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        outline: 0;
+    }
+
+    .rpg-input:focus {
+        border: 2px solid rgba(128, 189, 255,0.3);
+        border-radius: 8px;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        outline: 0;
+    }
+
+.rpg-input-file {
+    background-color: #ffbc07;
+    opacity: 1;
+    color: black;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin: 20px 0px;
+}
+
+    .rpg-input-file:hover {
+        background-color: rgba(255,188,79,0.90);
+        text-shadow: 0 0 5px #ffbc4f;
+        color:white
+    }
+
+.rpg-textarea {
+    background-color: #191919;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    min-height: 150px;
+    width: 100%;
+    padding:5px 14px;
+    text-align:justify
+}
+
+input[type="file"] {
+    display: none;
+}

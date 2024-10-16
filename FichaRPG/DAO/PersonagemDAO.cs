@@ -333,7 +333,7 @@ namespace FichaRPG.DAO
         {
             Tabela = "Personagem";
         }
-      
+
         public void UpdateVida(PersonagemViewModel model)
         {
             var parametros = new SqlParameter[]
