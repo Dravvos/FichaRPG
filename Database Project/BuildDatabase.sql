@@ -159,3 +159,29 @@ create table Relacao_Habilidade(id int primary key identity(1,1),
 	)
 
 	*/
+
+
+create table Campanha 
+(
+	id int primary key identity (1,1),
+	nome varchar(300) not null,
+	descricao varchar(max) null,
+	fotoCapa varbinary(max) null,
+)
+go
+
+create table Campanha_Usuario
+(
+	id int primary key identity (1,1),
+	campanha_id int foreign key references Campanha(id) not null,
+	usuario_id int foreign key references Usuario(id) not null
+)
+go
+
+create table Campanha_Personagem
+(
+	id int primary key identity (1,1),
+	campanha_id int foreign key references Campanha(id) not null,
+	personagem_id int foreign key references Personagem(id) not null
+)
+go
