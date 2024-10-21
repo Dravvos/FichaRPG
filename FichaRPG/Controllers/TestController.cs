@@ -12,7 +12,7 @@ namespace FichaRPG.Controllers
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
             string? version = fvi.FileVersion;
-            return Json(version);
+            return Ok(version);
         }
     }
 }
