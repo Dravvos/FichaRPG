@@ -36,7 +36,12 @@ namespace FichaRPG.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string? version = fvi.FileVersion;
+
+            ViewBag.version = version;
+            return View("Version");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
