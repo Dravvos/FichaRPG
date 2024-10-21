@@ -1,0 +1,88 @@
+﻿@model RituaisViewModel
+@{
+
+}
+<head>
+    <link rel="stylesheet" href="/css/Ritual.css" />
+    <meta charset="utf-8"/>
+</head>
+
+<div class="Ritual">
+    <div class="Ritual-Content">
+        <div class="Ritual-Header justify-content-center">
+            <h3 class="text-center">Adicionar Ritual</h3>
+        </div>
+        <form class="Ritual-Body" asp-action="Save" method="post">
+            <input type="hidden" name="Operacao" id="Operacao" value="@ViewBag.Operacao"/>
+            @if(ViewBag.Operacao=="I")
+            {
+                <input type="text" hidden name="Persona-id" id="Persona-id" value="@ViewBag.Personagem" />
+            }
+            else{
+                <input type="hidden" asp-for="Id"/>
+            }
+            <h3 class="mt-3">Detalhes do Ritual</h3>
+            <div class="row">
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0 ">Nome do Ritual:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Nome" required />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0">Elemento:</label>
+                    <select class="Ritual-Input border-left-0" asp-for="Elemento" required>
+                        <option value="Sangue">Sangue</option>
+                        <option value="Morte">Morte</option>
+                        <option value="Energia">Energia</option>
+                        <option value="Conhecimento">Conhecimento</option>
+                        <option value="Medo">Medo</option>
+                    </select>
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0 ">Círculo:</label>
+                    <input class="Ritual-Input border-left-0" min="1" max="4" asp-for="Circulo" required />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0">Execução:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Execucao" required />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0 ">Alcance:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Alcance" required />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0">Efeito:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Efeito" required />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0 ">Duração:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Duracao" required />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0">Resistência:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Resistencia" />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0 ">Discente:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Discente" />
+                </div>
+                <div class="Ritual-Input-Group">
+                    <label class="ml-1 border-right-0">Verdadeiro:</label>
+                    <input class="Ritual-Input border-left-0" asp-for="Verdadeiro" />
+                </div>
+            </div>
+
+            <div class="clearfix mt-3">
+                <a style="font-weight:500" href="/Personagem/Details?id=@ViewBag.Personagem" class="btn btn-danger float-left">Voltar</a>
+                @if (@ViewBag.Operacao == "I")
+                {
+                    <button id="CriarRitual" type="submit" class="btn Rpg-Button float-right">Criar</button>
+                }
+                else
+                {
+                    <button id="CriarRitual" type="submit" class="btn Rpg-Button float-right">Salvar</button>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+

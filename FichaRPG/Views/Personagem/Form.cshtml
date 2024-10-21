@@ -1,0 +1,307 @@
+﻿@model PersonagemViewModel;
+@using FichaRPG.Enums;
+@{
+    var origens = ViewBag.Origens as List<SelectListItem>;
+
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/personagem.css" />
+</head>
+<div class="container">
+
+    <h1 class="text-center">Criar um Novo Personagem</h1>
+    <form asp-action="Save">
+        <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
+        <input hidden name="id" value="@Model.Id" />
+        <div class="row">
+            <div style="border-radius:8px" class="col-lg p-1 mx-lg-1 my-1 bg-black border border-light">
+                <div style="background-color:#191919" class="card-body">
+                    <h2 class="text-center">Detalhes Principais</h2>
+                    <div class="pt-3">
+                        <label class="font-weight-bold">Nome do Personagem</label>
+                        <input class="rpg-input" class="rpg-input" asp-for="Nome" />
+                        <span class="text-danger" asp-validation-for="Nome"></span>
+                    </div>
+                    <div class="pt-3">
+                        <label class="font-weight-bold">Idade</label>
+                        <input class="rpg-input" min="1" max="99" asp-for="Idade" />
+                        <span class="text-danger" asp-validation-for="Idade"></span>
+                    </div>
+                    <div class="pt-3">
+                        <label class="font-weight-bold">Local de Nascimento (Opcional)</label>
+                        <input class="rpg-input" asp-for="LocalNascimento" />
+                    </div>
+                    @if (ViewBag.Operacao == "I")
+                    {
+                        <div class="pt-3">
+                            <label class="font-weight-bold">Origem</label>
+                            <select class="rpg-select" id="origemSel" asp-for="OrigemId" asp-items="ViewBag.Origens"></select>
+                            <span class="text-danger" asp-validation-for="OrigemId"></span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="pt-3">
+                            <label class="font-weight-bold">Origem</label>
+                            <select class="rpg-select" id="origemSel" asp-for="OrigemId" asp-items="@origens">
+                            </select>
+
+                            <span class="text-danger" asp-validation-for="OrigemId"></span>
+                        </div>
+                    }
+                    <div class="pt-3">
+                        <label class="font-weight-bold">Nível de Exposição Paranormal (NEX)</label>
+                        <input class="rpg-input" id="nex" min="0" max="99" asp-for="Nex" />
+                        <span class="text-danger" asp-validation-for="Nex"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="font-weight-bold">Classe</label>
+                            <select asp-for="ClasseId" asp-items="ViewBag.Classes" id="classeSel" class="rpg-select"></select>
+                            <span class="text-danger" asp-validation-for="ClasseId"></span>
+                        </div>
+                        @if (ViewBag.Operacao == "I")
+                        {
+                            <div class="col">
+                                <label class="font-weight-bold">Trilha</label>
+                                <select asp-for="TrilhaId" class="rpg-select" id="trilhaSel">
+                                    <option value="0" selected="selected">Nenhuma</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="TrilhaId" class="text-danger"></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col">
+                                <label class="font-weight-bold">Trilha</label>
+                                <select asp-for="TrilhaId" class="rpg-select" id="trilhaSel" asp-items="@ViewBag.TrilhasAtual">
+                                </select>
+                                <span class="text-danger" asp-validation-for="TrilhaId" class="text-danger"></span>
+                            </div>
+                        }
+                    </div>
+                    <div class="pt-3">
+                        <label class="font-weight-bold">Patente</label>
+                        <select class="rpg-select" asp-for="PatenteId" asp-items="@ViewBag.Patentes"></select>
+                        <span class="text-danger" asp-validation-for="PatenteId"></span>
+                    </div>
+                    <div class="pt-3">
+                        <label class="font-weight-bold">Resumo da História de como entrou para Ordem(Opcional)</label>
+                        <textarea class="rpg-textarea" asp-for="Historia"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-radius:8px" class="col-lg p-1 mx-lg-1 my-1 bg-black border border-light">
+                <div style="background-color:#191919; height:100%;" class="card-body">
+                    <h2 class="text-center">Atributos e Saúde</h2>
+                    <label class="font-weight-bold">Vigor</label>
+                    <input class="rpg-input" min="0" max="5" asp-for="Vigor" />
+                    <span class="text-danger" asp-validation-for="Vigor"></span>
+                    <br />
+                    <label class="font-weight-bold">Força</label>
+                    <input class="rpg-input" min="0" max="5" asp-for="Forca" />
+                    <span class="text-danger" asp-validation-for="Forca"></span>
+                    <br />
+                    <label class="font-weight-bold">Agilidade</label>
+                    <input class="rpg-input" min="0" max="5" asp-for="Agilidade" />
+                    <span class="text-danger" asp-validation-for="Agilidade"></span>
+                    <br />
+                    <label class="font-weight-bold">Intelecto</label>
+                    <input class="rpg-input" min="0" max="5" asp-for="Intelecto" />
+                    <span class="text-danger" asp-validation-for="Intelecto"></span>
+                    <br />
+                    <label class="font-weight-bold">Presença</label>
+                    <input class="rpg-input" min="0" max="5" asp-for="Presenca" />
+                    <span class="text-danger" asp-validation-for="Presenca"></span>
+                    <br />
+                    <label class="font-weight-bold">Vida Máxima (Pv - Deixe 1 para calcular automaticamente)</label>
+                    <input class="rpg-input" min="1" asp-for="PontosDeVidaMaximo" />
+                    <span class="text-danger" asp-validation-for="PontosDeVidaMaximo"></span>
+                    <br />
+                    <label class="font-weight-bold">Sanidade Máxima (San - Deixe 1 para calcular automaticamente)</label>
+                    <input class="rpg-input" min="1" asp-for="SanidadeMaxima" />
+                    <span class="text-danger" asp-validation-for="SanidadeMaxima"></span>
+                    <br />
+                    <label class="font-weight-bold">Pontos de Esforço (PE - Deixe 1 para calcular automaticamente)</label>
+                    <input class="rpg-input" min="1" asp-for="PontosDeEsforcoMaximo" />
+                    <span class="text-danger" asp-validation-for="PontosDeEsforcoMaximo"></span>
+                    <br />
+                    <label class="font-weight-bold">Defesa (10 + AGI + Equipamentos + outros)</label>
+                    <input class="rpg-input" min="10" asp-for="Defesa" />
+                    <span class="text-danger" asp-validation-for="Defesa"></span>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="pericias">
+            <h2 class="text-center">PERÍCIAS</h2>
+            <div class="pericias-body">
+                <div class="pericias-div">
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Acrobacia</label>
+                        <select asp-for="Acrobacia" class="rpg-pericias" id="acrobacia" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Adestramento</label>
+                        <select asp-for="Adestramento" class="rpg-pericias" id="adestramento" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Artes</label>
+                        <select asp-for="Artes" class="rpg-pericias" id="artes" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Atletismo</label>
+                        <select asp-for="Atletismo" class="rpg-pericias" id="atletismo" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Atualidades</label>
+                        <select asp-for="Atualidades" class="rpg-pericias" id="atualidades" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Ciência</label>
+                        <select asp-for="Ciencias" class="rpg-pericias" id="ciencia" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Crime</label>
+                        <select asp-for="Crime" class="rpg-pericias" id="crime" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Diplomacia</label>
+                        <select asp-for="Diplomacia" class="rpg-pericias" id="diplomacia" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Enganação</label>
+                        <select asp-for="Enganacao" class="rpg-pericias" id="enganacao" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Fortitude</label>
+                        <select asp-for="Fortitude" class="rpg-pericias" id="fortitude" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Furtividade</label>
+                        <select asp-for="Furtividade" class="rpg-pericias" id="furtividade" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Iniciativa</label>
+                        <select asp-for="Iniciativa" class="rpg-pericias" id="iniciativa" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Intimidação</label>
+                        <select asp-for="Intimidacao" class="rpg-pericias" id="intimidacao" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Intuição</label>
+                        <select asp-for="Intuicao" class="rpg-pericias" id="intuicao" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Investigação</label>
+                        <select asp-for="Investigacao" class="rpg-pericias" id="investigacao" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Luta</label>
+                        <select asp-for="Luta" class="rpg-pericias" id="luta" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Medicina</label>
+                        <select asp-for="Medicina" class="rpg-pericias" id="medicina" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Ocultismo</label>
+                        <select asp-for="Ocultismo" class="rpg-pericias" id="ocultismo" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Percepção</label>
+                        <select asp-for="Percepcao" class="rpg-pericias" id="percepcao" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Pilotagem</label>
+                        <select asp-for="Pilotagem" class="rpg-pericias" id="pilotagem" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Pontaria</label>
+                        <select asp-for="Pontaria" class="rpg-pericias" id="pontaria" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Profissão</label>
+                        <select asp-for="Profissao" class="rpg-pericias" id="profissao" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Reflexos</label>
+                        <select asp-for="Reflexos" class="rpg-pericias" id="reflexos" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Religião</label>
+                        <select asp-for="Religiao" class="rpg-pericias" id="religiao" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Sobrevivência</label>
+                        <select asp-for="Sobrevivencia" class="rpg-pericias" id="sobrevivencia" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Tática</label>
+                        <select asp-for="Tatica" class="rpg-pericias" id="tatica" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Tecnologia</label>
+                        <select asp-for="Tecnologia" class="rpg-pericias" id="tecnologia" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                    <div class="rpg-column">
+                        <label class="font-weight-bold">Vontade</label>
+                        <select asp-for="Vontade" class="rpg-pericias" id="vontade" asp-items="@Html.GetEnumSelectList<enumTreinamento>()"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="border-radius:8px" class="col-lg p-1 mx-lg-1 border my-1 border-light mt-3">
+            <div style="background-color:#191919" class="card-body">
+                <h2 class="text-center">Detalhes não tão importantes para preencher agora</h2>
+                <div class="pt-3">
+                    <label class="font-weight-bold">Doenças, manias ou fobias do Personagem</label>
+                    <textarea class="rpg-textarea-2" asp-for="DoencaFobiaMania" ></textarea>
+                </div>
+                <div class="pt-3">
+                    <label class="font-weight-bold">Anotações </label>
+                    <textarea class="rpg-textarea-2" asp-for="Anotacoes" ></textarea>
+                </div>
+                <div class="pt-3">
+                    <label class="font-weight-bold">Personalidade</label>
+                    <textarea class="rpg-textarea-2" asp-for="Personalidade" ></textarea>
+                </div>
+                <div class="pt-3">
+                    <label class="font-weight-bold">Coisas/Pessoas Favoritas </label>
+                    <textarea class="rpg-textarea-2" asp-for="Favoritos"></textarea>
+                </div>
+                <div class="pt-3">
+                    <label class="font-weight-bold">Aparência do Personagem</label>
+                    <textarea class="rpg-textarea-2" asp-for="Aparencia"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        @if (ViewBag.Operacao == "I")
+        {
+            <button type="submit" class="btn btn-block Rpg-Button">Criar Personagem</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-block Rpg-Button">Salvar Alterações</button>
+        }
+        <br />
+
+        <br />
+
+        <br />
+
+
+    </form>
+</div>
+<script src="~/js/Personagem.js"></script>

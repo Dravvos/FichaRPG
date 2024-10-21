@@ -1,0 +1,777 @@
+﻿@using System.Reflection
+@using FichaRPG.Services;
+@using FichaRPG.DAO;
+@using Microsoft.AspNetCore.Http;
+@model PersonagemViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var relacaoDao = new RelacaoRitualDAO();
+    var personagemDao = new PersonagemDAO();
+    var origemDao = new OrigemDAO();
+    var classeDao = new ClasseDAO();
+    var poderClasseDao = new PoderClasseDAO();
+    var ritualDao = new RituaisDAO();
+    var dadoDAO = new DadoDAO();
+    var itemDao = new ItensDAO();
+    var armaDao = new ArmasDAO();
+    List<string> pericias = personagemDao.ListarNomesDePericias(Model.Id);
+    List<short> valores = personagemDao.ListarValoresDePericias(Model.Id);
+    List<DadoViewModel> dados = dadoDAO.ListaDadosPorPersonagem(Model.Id);
+    OrigemViewModel Origem = origemDao.Consulta(Model.OrigemId);
+    PoderClasseViewModel poderClasse = poderClasseDao.Consulta(Model.ClasseId);
+    List<RituaisViewModel> Rituais = ritualDao.ListarRituaisPorPersonagem(Model.Id);
+    List<ItensViewModel> itens = itemDao.ListarItensPorPersonagem(Model.Id);
+    List<ArmasViewModel> armas = armaDao.Listar(Model.Id);
+    int pesoArmas = armaDao.PesoArmas(Model.Id);
+    int pesoItens = itemDao.PesoItens(Model.Id);
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/Details.css?v=1" />
+
+</head>
+<body>
+    <input type="hidden" id="id" value="@Model.Id" />
+    <input type="hidden" id="usuario" value="@ViewBag.Usuario" />
+    <input type="hidden" id="model-usuario" value="@Model.UsuarioId" />
+    <input type="hidden" id="dice" value="@dados.Count" />
+    <div class="rpg-container-fluid">
+        <div class="rpg-contain">
+
+            <!--DETALHES DO PERSONAGEM-->
+
+            <div class="coluna">
+                <div class="detalhes">
+                    <div class="detalhes-header">
+                        <div class="float-left">
+                            <button class="btn btn-sm text-white">
+                                <i class="fa fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="float-right">
+                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                                <i class="fa fa-2x fa-pencil"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="detalhes-body">
+
+                        <h2 class="text-center">Detalhes</h2>
+
+                        <div class="inputs">
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">Nome:</div>
+                                    <div class="rpg-input-2" disabled>@Model.Nome</div>
+                                </div>
+                            </div>
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">Jogador:</div>
+                                    <div class="rpg-input-2" disabled>@ViewBag.User</div>
+                                </div>
+                            </div>
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">Classe:</div>
+                                    <div class="rpg-input-2" disabled>@ViewBag.Classe</div>
+                                </div>
+                            </div>
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">Trilha:</div>
+                                    <div class="rpg-input-2" disabled>@ViewBag.Trilha</div>
+                                </div>
+                            </div>
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">Origem:</div>
+                                    <div class="rpg-input-2" disabled>@ViewBag.Origem</div>
+                                </div>
+                            </div>
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">NEX:</div>
+                                    <div class="rpg-input-2" disabled>@Model.Nex%</div>
+                                </div>
+                            </div>
+
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">Idade:</div>
+                                    <div class="rpg-input-2" disabled>@Model.Idade</div>
+                                </div>
+                            </div>
+                            <div class="coluna-2">
+                                <div class="inputs-group">
+                                    <div class="bg-dark position-absolute mx-2 pt-1 px-1 text-center ">Deslocamento:</div>
+                                    <div class="rpg-input-2" disabled>@Model.Deslocamento</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--VIDA SANIDADE E PE-->
+
+            <div class="coluna">
+                <div class="detalhes">
+                    <div class="detalhes-header">
+                        <div class="float-left">
+                            <button class="btn btn-sm text-white">
+                                <i class="fa fa-copy">Just</i>
+                            </button>
+                        </div>
+                        <div class="float-right">
+                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                                <i class="fa fa-2x fa-pencil">Do It</i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="detalhes-body">
+
+                        <h2 class="text-center">Características</h2>
+                        <div class="m-2">
+                            <div style="color:white;display:block;overflow-wrap:break-word;text-align:start;">
+                                <h3 class="text-center">Vida</h3>
+                                <button onclick="DiminuiMenosCinco('vida')" class="btn btn-sm icone">
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    -5
+                                </button>
+                                <button onclick="DiminuiMenosUm('vida')" class="btn btn-sm icone">
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    -1
+                                </button>
+
+                                <button onclick="AdicionaMaisCinco('vida')" class="btn btn-sm icone float-right">
+                                    +5
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    
+                                </button>
+                                <button onclick="AdicionaMaisUm('vida')" class="btn btn-sm icone float-right">
+                                    +1
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    
+                                </button>
+                                <input id="Vida" onmousemove="AtualizaPv()" class="rpg-range-vida" type="range" min="0" value="@Model.PontosDeVidaAtual" max="@Model.PontosDeVidaMaximo" />
+                                <span id="rangeValuePv">@Model.PontosDeVidaAtual</span>
+                            </div>
+                            <div style="color:white;display:block;overflow-wrap:break-word;text-align:start;">
+                                <h3 class="text-center">Sanidade</h3>
+                                <button onclick="DiminuiMenosCinco('sanidade')" class="btn btn-sm icone">
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    -5
+                                </button>
+                                <button onclick="DiminuiMenosCinco('sanidade')" class="btn btn-sm icone">
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    -1
+                                </button>
+
+                                <button onclick="AumentaMaisCinco('sanidade')" class="btn btn-sm icone float-right">
+                                    +5
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    
+                                </button>
+                                <button onclick="AdicionaMaisUm('sanidade')" class="btn btn-sm icone float-right">
+                                    +1
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    
+                                </button>
+                                <input id="Sanidade" class="rpg-range-sanidade" onmousemove="AtualizaSan()" type="range" min="0" value="@Model.SanidadeAtual" max="@Model.SanidadeMaxima" />
+                                <span id="rangeValueSan">@Model.SanidadeAtual</span>
+                            </div>
+                            <div style="color:white;display:block;overflow-wrap:break-word;text-align:start;">
+                                <h3 class="text-center">Pontos de Esforço</h3>
+                                <button onclick="DiminuiMenosCinco('pontos de esforço')" class="btn btn-sm icone">
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    -5
+                                </button>
+                                <button onclick="DiminuiMenosUm('pontos de esforço')" class="btn btn-sm icone">
+                                    <i class="fa fa-chevron-left">
+                                    </i>
+                                    -1
+                                </button>
+
+                                <button onclick="AumentaMaisCinco('pontos de esforço')" class="btn btn-sm icone float-right">
+                                    +5
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    
+                                </button>
+                                <button onclick="AdicionaMaisUm('pontos de esforço')" class="btn btn-sm icone float-right">
+                                    +1
+                                    <i class="fa fa-chevron-right">
+                                    </i>
+                                    
+                                </button>
+                                <input id="Pe" class="rpg-range-pe" onmousemove="AtualizaPe()" type="range" min="0" value="@Model.PontosDeEsforcoAtual" max="@Model.PontosDeEsforcoMaximo" />
+                                <span id="rangeValuePe">@Model.PontosDeEsforcoAtual</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--ATRIBUTOS-->
+
+            <div class="coluna">
+                <div class="detalhes">
+                    <div class="detalhes-header">
+                        <div class="float-left">
+                            <button class="btn btn-sm text-white">
+                                <i class="fa fa-copy">Just</i>
+                            </button>
+                        </div>
+                        <div class="float-right">
+                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                                <i class="fa fa-2x fa-pencil">Do It</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="detalhes-body">
+                        <h2 class="text-center">Atributos</h2>
+                        <div class="container-fluid p-0 mb-2">
+                            <div class="containera mx-auto">
+                                <button id="For" class="atributos forca hex btn font2">@Model.Forca</button>
+                                <button id="Agi" class="atributos agilidade hex btn font2">@Model.Agilidade</button>
+                                <button id="Int" class="atributos intelecto hex btn font2">@Model.Intelecto</button>
+                                <button id="Pre" class="atributos presenca hex btn font2">@Model.Presenca</button>
+                                <button id="Vig" class="atributos vigor hex btn font2">@Model.Vigor</button>
+                                <img src="~/images/atributos.webp" alt="Atributos" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--PERÍCIAS-->
+
+            <div class="coluna">
+                <div class="detalhes">
+                    <div class="detalhes-header">
+                        <div class="float-left">
+                            <button class="btn btn-sm text-white">
+                                <i class="fa fa-copy">Just</i>
+                            </button>
+                        </div>
+                        <div class="float-right">
+                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                                <i class="fa fa-2x fa-pencil">Do It</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="detalhes-body">
+                        <h2 class="text-center">Perícias</h2>
+                        <div class="mt-2 container-fluid">
+                            <div class="row" style="padding-left:5px">
+                                @for (int i = 1; i < valores.Count; i++)
+                                {
+                                    <div class="treinado text-center">
+                                        <button class="pericia-treinada" id="peri-@i">
+
+                                            <i class="fa fa-2x fa-dice-d20"></i>
+                                            <span id="valor-@i">+@valores.ElementAt(i)</span>
+                                            <br />
+                                            @if (valores.ElementAt(i) == 5)
+                                            {
+                                                <span class="text-success">@pericias.ElementAt(i-1)</span>
+                                            }
+                                            else if (valores.ElementAt(i) == 10)
+                                            {
+                                                <span class="text-primary">@pericias.ElementAt(i-1)</span>
+                                            }
+                                            else if (valores.ElementAt(i) == 15)
+                                            {
+                                                <span class="text-warning">@pericias.ElementAt(i-1)</span>
+                                            }
+
+                                        </button>
+
+                                    </div>
+                                    <br />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-success">Treinadas</span>
+                        <span class="text-primary">Veterano</span>
+                        <span class="text-warning">Expert</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--HABILIDADES E PODERES-->
+
+            <div class="coluna">
+                <div class="detalhes">
+                    <div class="detalhes-header">
+                        <div class="float-left">
+                            <button class="btn btn-sm text-white">
+                                <i class="fa fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="float-right">
+                            <a class="btn btn-sm text-success">
+                                <i class="fa fa-2x fa-plus-square"></i>
+                            </a>
+                        </div>
+                        <div class="float-right">
+                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                                <i class="fa fa-2x fa-pencil"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="detalhes-body">
+                        <nav>
+                            <div class="nav-item">
+                                <button id="habilidades" onclick="MostraHabilidades()" class="border-light rounded-pill mr-1 fundo btn text-light">Habilidades</button>
+                                <button id="poderes" onclick="MostraPoderes()" class="ml-1 fundo btn text-light">Poderes</button>
+                            </div>
+                        </nav>
+                        <div class="tab-items">
+                            <div id="page1" class="tab-item fade show">
+                                @if (ViewBag.Classe == "Combatente")
+                                {
+                                    <div class="habilidades">
+                                        <label class="font-weight-bolder">Ataque Especial (Classe)</label>
+                                        <div>
+                                            <span>
+                                                Quando faz um ataque, você pode gastar 2 PE para receber +5
+                                                no teste de ataque ou na rolagem de dano. Conforme avança de NEX,
+                                                você pode gastar +1 PE para receber mais bônus de +5. Você pode
+                                                aplicar cada bônus de +5 em ataque ou dano.
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                                else if (ViewBag.Classe == "Especialista")
+                                {
+                                    <div class="habilidades">
+                                        <label class="font-weight-bolder">Eclético (Classe)</label>
+                                        <div>
+                                            <span>
+                                                Quando faz um teste de uma perícia, você pode gastar 2
+                                                PE para receber os benefícios de ser treinado nesta perícia.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="habilidades">
+                                        <label class="font-weight-bolder">Perito (Classe)</label>
+                                        <div>
+                                            <span>
+                                                Escolha duas perícias nas quais você é treinado (exceto Luta
+                                                e Pontaria). Quando faz um teste de uma dessas perícias, você pode
+                                                gastar 2 PE para somar +1d6 no resultado do teste. Conforme avança
+                                                de NEX, você pode gastar +1 PE para aumentar o dado de bônus
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="habilidades">
+                                        <label class="font-weight-bolder">Escolhido Pelo Outro Lado (Classe)</label>
+                                        <div>
+                                            <span>
+                                                Você teve uma experiência paranormal e foi marcado pelo Outro Lado,
+                                                absorvendo o conhecimento e poder necessários para realizar rituais.
+                                                Você pode lançar rituais de 1º círculo. À medida que aumenta seu NEX,
+                                                pode lançar rituais de círculos maiores (2º círculo em NEX 25%, 3º círculo
+                                                em NEX 55% e 4º círculo em NEX 85%). Você começa com três rituais de 1º círculo.
+                                                Sempre que avança de NEX, aprende um ritual de qualquer círculo que possa
+                                                lançar. Esses rituais não contam no seu limite de rituais conhecidos.
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="habilidades">
+                                    <label class="font-weight-bolder">@Origem.PoderNome (Origem)</label>
+                                    <div>
+                                        <span>@Origem.PoderResumo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="page2" class="tab-item fade hide">
+                                <div class="habilidades">
+                                    <label class="font-weight-bolder">PoderParanormal (NEX)</label>
+                                    <div>
+                                        <span>Sangue de Ferro</span>
+                                    </div>
+                                </div><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--DADOS-->
+
+            <div class="coluna">
+                <div class="detalhes">
+                    <div class="detalhes-header">
+                        <div class="float-right">
+                            <button id="Criar" class="btn btn-sm text-success">
+                                <i class="fa fa-2x fa-plus-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <h2 class="text-center">Dados Customizados</h2><br />
+                    <div class="detalhes-body">
+                        <div class="container-dados">
+                            <div class="p-2">
+                                <input type="text" id="Dado" placeholder="1d20+5" />
+                                <button id="rolarDados" class="btn btn-sm btn-outline-light rounded-0">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            <span class="text-center">Dados salvos</span>
+                            <div class="Lista-Dados">
+                                <div class="dado" id="dadoCustom">
+                                    @for (int i = 0; i < dados.Count; i++)
+                                    {
+                                        <button class="btn dice text-light form-text">
+                                            <i class="fa fa-2x fa-dice-d20"></i><br />
+                                            @if (string.IsNullOrEmpty(@dados.ElementAt(i).Nome))
+                                            {
+                                                <span>@dados.ElementAt(i).Dado.Replace("m","+")</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@dados.ElementAt(i).Nome</span>
+                                            }
+                                        </button>
+                                        <input type="hidden" id="dadoValor-@i" value="@dados.ElementAt(i).Dado.ToString().Replace("m","+")" />
+                                        <input type="hidden" id="damage-@i" value="@dados.ElementAt(i).Dano.ToString()" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="rpg-contain-2">
+
+        <!--Inventário-->
+        <div class="coluna-3">
+            <div class="detalhes">
+
+                <h2 class="text-center">Inventário</h2>
+                @if (pesoArmas == 0 && pesoItens == 0)
+                {
+                    @if (ViewBag.Trilha == "Técnico")
+                    {
+                        <h4 class="text-center">Peso carregado:0/@(Model.Intelecto * 5 + Model.Forca * 5)</h4>
+                    }
+                    else
+                    {
+                        <h4 class="text-center">Peso carregado:0/@(Model.Forca * 5)</h4>
+                    }
+                }
+                else
+                {
+                    @if (ViewBag.Trilha == "Técnico")
+                    {
+                        <h4 class="text-center">Peso carregado:@(pesoArmas + pesoItens)/@(Model.Intelecto * 5 + Model.Forca * 5)</h4>
+                    }
+                    else
+                    {
+                        <h4 class="text-center">Peso carregado:@(pesoArmas + pesoItens)/@(Model.Forca * 5)</h4>
+                    }
+                }
+                <div class="detalhes-body">
+                    <div class="p-4">
+                        <h3 class="text-center">Armas</h3>
+                        <div class="float-right">
+                            <form asp-action="Arma">
+                                <input type="hidden" name="ArmaId" value="@Model.Id" />
+                                <button type="submit" class="btn btn-sm text-success">
+                                    <i class="fa fa-plus-square"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <table class="rpg-table border-right">
+                            <thead class="rpg-thead">
+                                <tr>
+                                    <th class="rpg-th">Nome</th>
+                                    <th class="rpg-th">Alcance</th>
+                                    <th class="rpg-th">Dano</th>
+                                    <th class="rpg-th">Crítico</th>
+                                </tr>
+                            </thead>
+                            <tbody class="rpg-tbody">
+                                @for (int i = 0; i < armas.Count; i++)
+                                {
+                                    <tr class="text-left rpg-tr">
+                                        <td class="rpg-td">
+                                            @armas.ElementAt(i).Nome
+                                        </td>
+                                        <td class="rpg-td">
+                                            @armas.ElementAt(i).Alcance
+                                        </td>
+                                        <td class="rpg-td">
+                                            @armas.ElementAt(i).Dano
+                                        </td>
+                                        <td class="rpg-td">
+                                            @armas.ElementAt(i).Critico
+                                            <a href="~/Arma/Edit?id=@armas.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <button onclick="javascript:apagarArma(@armas.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <h3 class="text-center">Itens</h3>
+                        <div class="float-right">
+                            <form asp-action="Item">
+                                <input type="hidden" name="ItemId" value="@Model.Id" />
+                                <button type="submit" class="btn btn-sm text-success">
+                                    <i class="fa fa-plus-square"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <table class="rpg-table border-right">
+                            <thead class="rpg-thead">
+                                <tr>
+                                    <th class="rpg-th">Nome</th>
+                                    <th class="rpg-th">Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody class="rpg-tbody">
+                                @for (int i = 0; i < itens.Count; i++)
+                                {
+                                    <tr class="text-left rpg-tr">
+                                        <td class="rpg-td">
+                                            @itens.ElementAt(i).Nome
+                                        </td>
+                                        <td class="rpg-td">
+                                            @itens.ElementAt(i).Descricao
+                                            <a href="~/Item/Edit?id=@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <button onclick="javascript:apagarItem(@itens.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Rituais-->
+        <div class="coluna-3">
+            <div class="detalhes">
+                <div class="detalhes-header">
+
+                    <div class="float-right">
+                        <form asp-action="Ritual">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <button class="btn btn-sm text-success">
+                                <i class="fa fa-2x fa-plus-square"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <h2 class="text-center">Rituais</h2>
+                <div class="detalhes-body">
+
+                    <nav id="nav" class="nav justify-content-start">
+                        @for (int i = 0; i < Rituais.Count; i++)
+                        {
+                            <div id="pagina-@i" class="nav px-2" role="tablist">
+                                <button onclick="MostraRitual(event,'page-@i')" class="fundo border-light text-light nav-link">@Rituais.ElementAt(i).Nome</button>
+                            </div>
+                        }
+                    </nav>
+                    <div class="m-2">
+                        <div class="tab-items">
+                            @for (int i = 0; i < Rituais.Count; i++)
+                            {
+                                <div id="page-@i" class="tab-item hideable">
+                                    <div class="container-fluid text-start">
+
+                                        <div class="row">
+                                            <div class="col-12 col-md align-content-center">
+                                                <div class="row m-1">
+                                                    <div class="col-12">
+                                                        <div class="float-left">
+                                                            <a href="javascript:apagarRitual(@Rituais.ElementAt(i).Id,@Model.Id)" class="btn btn-sm float-left text-danger">
+                                                                <i class="fa 2x fa-trash"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="float-right">
+                                                            <a href="~/Ritual/Editar?id=@Rituais.ElementAt(i).Id&personagemId=@Model.Id" class="btn btn-sm float-right text-warning">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+
+                                                        <div class="position-relative">
+
+                                                            <span class="form-control form-control-sm fundo text-light">Nome: <b>@Rituais.ElementAt(i).Nome</b> </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="coluna">
+                                                        <span class="form-control form-control-sm fundo text-light">Elemento: <b>@Rituais.ElementAt(i).Elemento</b></span>
+                                                    </div>
+                                                    <div class="coluna">
+                                                        <span class="form-control-sm form-control fundo text-light">Execução: <b>@Rituais.ElementAt(i).Execucao</b></span>
+                                                    </div>
+                                                    <div class="coluna">
+                                                        <span class="form-control-sm form-control fundo text-light">Alcance: <b>@Rituais.ElementAt(i).Alcance</b></span>
+                                                    </div>
+                                                    <div class="coluna">
+                                                        <span class="form-control-sm form-control fundo text-light">Efeito: <b>@Rituais.ElementAt(i).Efeito</b></span>
+                                                    </div>
+                                                    <div class="coluna">
+                                                        <span class="form-control-sm form-control fundo text-light">Duração: <b>@Rituais.ElementAt(i).Duracao</b></span>
+                                                    </div>
+                                                    @if (string.IsNullOrEmpty(@Rituais.ElementAt(i).Resistencia))
+                                                    {
+                                                        <div class="coluna">
+                                                            <span class="form-control-sm form-control fundo text-light">Resistência: <b>Não há Resistência para este ritual</b></span>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="coluna">
+                                                            <span class="form-control-sm form-control fundo text-light">Resistência: <b>@Rituais.ElementAt(i).Resistencia</b></span>
+                                                        </div>
+                                                    }
+                                                    @if (string.IsNullOrEmpty(@Rituais.ElementAt(i).Discente))
+                                                    {
+                                                        <div class="coluna">
+                                                            <span class="form-control-sm form-control fundo text-light">Discente: <b>Não há versão Discente deste ritual</b></span>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="coluna">
+                                                            <span class="form-control-sm form-control fundo text-light">Discente: <b>@Rituais.ElementAt(i).Discente</b></span>
+                                                        </div>
+                                                    }
+                                                    @if (string.IsNullOrEmpty(@Rituais.ElementAt(i).Verdadeiro))
+                                                    {
+                                                        <div class="coluna">
+                                                            <span class="form-control-sm form-control fundo text-light">Verdadeiro: <b>Não há versão Verdadeiro deste ritual</b></span>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="coluna">
+                                                            <span class="form-control-sm form-control fundo text-light">Verdadeiro: <b>@Rituais.ElementAt(i).Verdadeiro</b></span>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if (i == Rituais.Count - 1)
+                                {
+                                    break;
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+
+    <!--POPUPS-->
+    <div id="myModal" class="modal popup-2">
+        <div class="modal-content" style="background-color:black;color:white;">
+            <div class="modal-header bg-dark">
+                <b>Resultado</b>
+                <button onclick="closePopup()" type="button" class="btn text-white-50 close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4>Random Number: 25;</h4>
+
+                <span id="number" class="text-secondary">d20:Random</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="ModalDado" class="modal modal-sm popup">
+        <div class="modal-content" style="background-color:black;color:white;">
+            <div class="modal-header fundo">
+                <b>Adicionar Dado</b>
+                <button onclick="closePopup()" type="button" class="btn text-light close">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="Rpg-Input-Group">
+                    <label>Nome(Opcional)</label>
+                    <input maxlength="20" id="dNome" placeholder="Dado de Ferro" class="rpg-input" />
+                </div>
+                <div class="Rpg-Input-Group">
+                    <label>Dados</label>
+                    <input id="dValor" placeholder="2d12+10" class="rpg-input" />
+                </div>
+                <div class="Rpg-Input-Group">
+                    <input class="ml-1 form-check-input" id="switchDano" type="checkbox" />
+                    <label class="ml-4">Rolar como dano (soma todos os dados)</label>
+                </div>
+                <button id="criar" class="btn Rpg-Button" type="button">Criar</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="~/js/Details.js"></script>

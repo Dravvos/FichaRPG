@@ -1,0 +1,422 @@
+﻿body {
+    background-color:black;
+    color:white;
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing:border-box;
+}
+.rpg-table {
+    border-collapse: collapse;
+    color: white;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.rpg-thead {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.rpg-tbody {
+    border-top: 2px solid white;
+
+}
+.rpg-th {
+    border: 1px solid white;
+    padding:6px 0 6px 6px;
+}
+.rpg-td {
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 6px;
+}
+.rpg-container-fluid{
+    cursor:default;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 0px 12px;
+    text-align:start;
+    width:100%!important;
+}
+.rpg-contain {
+    cursor: default;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: start;
+    text-size-adjust: 100%;
+}
+.detalhes {
+    background-color:#191919;
+    border: 1px solid white;
+    border-radius: 8px;
+    cursor: default;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 100%;
+    margin-top: 8px;
+    padding: 0px 4px;
+    position: relative;
+    text-align: start;
+    text-size-adjust: 100%;
+    word-wrap: break-word;
+}
+.detalhes-header {
+    border-bottom: 1px solid rgba(0,0,0,0.176);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor:default;
+    line-height:24px;
+    overflow-wrap:break-word;
+    text-align:start;
+    text-size-adjust:100%;
+}
+.detalhes-header::after{
+    clear:both;
+    content:"";
+}
+.detalhes-body{
+    flex-basis:auto;
+    flex-grow:1;
+    flex-shrink:1;
+}
+.inputs{
+    cursor:default;
+    display:flex;
+    flex-wrap:wrap;
+    margin: 0px -2px -4px -2px;
+    overflow-wrap:break-word;
+    text-align:start;
+    text-size-adjust:100%;
+}
+.inputs-group{
+    cursor:default;
+    display:block;
+    margin:8px;
+    overflow-wrap:break-word;
+    padding:4px;
+    position:relative;
+    text-align:start;
+    text-size-adjust:100%;
+}
+.coluna {
+    display:block;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink:0;
+    width: 50%;
+    padding: 4px 4px;
+    text-align:start;
+    text-size-adjust:100%;
+}
+.coluna-2{
+    flex:0 0 auto;
+    margin-top:4px;
+    overflow-wrap:break-word;
+    padding:0px 2px;
+    text-align:start;
+    text-size-adjust:100%;
+    width:50%;
+}
+
+.coluna-3 {
+    display: block;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    padding: 4px 4px;
+    text-align: start;
+    text-size-adjust: 100%;
+}
+
+@media (max-width:768px){
+    .coluna{
+        flex: 0 0 auto;
+        width:100%;
+    }
+}
+@media (max-width:600px){
+    .inputs{
+        flex-direction:column;
+        width:220%;
+    }
+}
+
+.rpg-range-vida {
+    background: #212529;
+    box-shadow: inset 0 0 5px rgba(0,0,0,1);
+    border-radius: 15px;
+    height: 25px;
+    overflow: hidden;
+    outline: none;
+    -webkit-appearance: none;
+    width: 93%;
+}
+
+    .rpg-range-vida::-webkit-slider-thumb {
+        -webkit-appearance:none;
+        width:25px;
+        border-radius: 50%;
+        background: #fd0000;
+        cursor: pointer;
+        height:25px;
+        border: 4px solid #eee;
+        box-shadow: -407px 0 0 400px #fd0000;
+    }
+
+.rpg-range-sanidade {
+    width: 93%;
+    height: 25px;
+    -webkit-appearance: none;
+    background-color: #191919;
+    border-radius: 15px;
+    overflow: hidden;
+    outline: none;
+    box-shadow: inset 0 0 5px rgba(0,0,0,1);
+}
+
+    .rpg-range-sanidade::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #0044ff;
+        cursor: pointer;
+        border: 4px solid #eee;
+        box-shadow: -407px 0 0 400px #0044ff;
+    }
+
+.rpg-range-pe {
+    width: 93%;
+    height: 25px;
+    -webkit-appearance: none;
+    background-color: #191919;
+    border-radius: 15px;
+    overflow: hidden;
+    outline: none;
+    box-shadow: inset 0 0 5px rgba(0,0,0,1);
+}
+
+    .rpg-range-pe::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #e8e337;
+        cursor: pointer;
+        border: 4px solid #eee;
+        box-shadow: -407px 0 0 400px #e8e337;
+    }
+
+.popup {
+    top: 40%;
+    left: 40%;
+}
+.popup-2 {
+    width: max-content;
+    top: 40%;
+    left: 40%;
+}
+
+.Rpg-Input-Group {
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.4em;
+    position: relative;
+    text-align: start;
+    width: 100%;
+}
+
+.rpg-input {
+    background-color: #191919;
+    border-radius: 10px;
+    color: white;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    height: fit-content;
+    padding: 6px 12px;
+    text-align: start;
+    width:100%;
+}
+
+    .rpg-input:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255,188,79,0.25);
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(255,188,79,0.25);
+    }
+.rpg-input-2 {
+    border: 1px solid white;
+    color: white;
+    display: block;
+    margin: 16px 0px;
+    overflow-wrap: break-word;
+    padding: 8px;
+    text-align: start;
+    text-size-adjust:100%;
+}
+.containera{
+    position:relative;
+    text-align:center;
+    width:300px;
+    height:auto;
+    color:white;
+}
+.forca{
+    margin-top:26.75%;
+    margin-left:3.5%;
+}
+.agilidade{
+    margin-top:5%;
+    margin-left:35%;
+}
+.vigor{
+    margin-top:65%;
+    margin-left:57%;
+}
+.intelecto{
+    margin-top:27%;
+    margin-left:66%;
+}
+.presenca{
+    margin-top:65%;
+    margin-left:12.75%;
+}
+img{
+    height:auto;
+    width:300px;
+}
+.hex{
+
+    clip-path:polygon(5% 25%, 50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%);
+    padding-bottom:10%;
+}
+.atributos{
+    color:lightgray;
+    font-size:30px;
+    position:absolute;
+    text-align:center;
+    height:88px;
+    width:90px;
+}
+    .atributos:hover {
+        color:lightcoral;
+        text-shadow: 2px 2px 2px #fd0000;
+    }
+.font2{
+    font-family:'EB Garamond',serif;
+}
+.treinado{
+    flex:0 0 auto;
+    width:auto;
+    padding: 8px 16px;
+}
+.pericia-treinada {
+    border: none;
+    appearance: none;
+    background: none;
+    color: white;
+    font-size: 18px
+}
+
+.treinado:hover {
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+.nav-item{
+    margin:0.5rem;
+    justify-content:center;
+    display:flex;
+}
+button.fundo{
+    background-color:#191919;
+    color:white;
+    font-weight:bold;
+}
+    button.fundo:hover,button.fundo:active{
+        border:1px solid white;
+        border-radius:50rem;
+    }
+span.fundo {
+    background-color: #191919;
+    height:100%;
+    color: white;
+}
+.tab-items{
+    display:block;
+    margin:8px;
+    overflow-wrap:break-word;
+    text-align:start;
+    text-size-adjust:100%;
+}
+.tab-item{
+    transition:opacity .15s linear;
+}
+.hideable {
+    display: none;
+    transition: opacity .15s linear;
+}
+.habilidades{
+    margin:16px;
+    overflow-wrap:break-word;
+    text-align:start;
+    text-size-adjust:100%;
+}
+
+.container-dados{
+    justify-content:center;
+    margin-left:auto;
+    margin-right:auto;
+    overflow-wrap:break-word;
+    padding:0;
+    text-align:center;
+    text-size-adjust:100%;
+    width:100%;
+}
+
+.dado{
+    display:block;
+    flex:0 0 auto;
+    margin-top:8px;
+    max-width:100%;
+    overflow-wrap:break-word;
+    padding:0px 4px;
+    text-align:center;
+    text-size-adjust:100%;
+    width:100%;
+}
+.dice{
+    border:none;
+}
+.dice:hover{
+    border:1px solid white;
+    border-radius:8px;
+}
+
+.rpg-contain-2 {
+    display: block;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    text-align: start;
+    text-size-adjust: 100%;
+    padding:0 12px;
+    position: relative;
+    width: 100%;
+}
+
+.icone {
+    color: white;
+    margin-bottom: 5px;
+}
+    .icone:hover {
+        border: 1px solid white;
+        border-radius: 8px;
+        color: white;
+    }
+    .icone:focus{
+        outline:0;
+        box-shadow:none;
+    }

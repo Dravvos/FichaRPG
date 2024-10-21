@@ -1,0 +1,133 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+body{
+    color:white;
+}
+
+header{
+    box-shadow:0 0px 10px 0px gray;
+}
+.nav-topo {
+    background-color: black !important;
+    font-weight: 500 !important;
+}
+a.navbar-brand {
+  color:white!important;
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+a.nav-topo{
+    color:white!important;
+}
+    a.nav-topo:hover {
+        color: white!important;
+        text-shadow: 0 0 5px #ffbc4f;
+    }
+.police-tape {
+    background-color: yellow;
+    background: linear-gradient(180deg, lighten($yellow, 20%) 0%, $yellow 5%, $yellow 90%, lighten($yellow, 5%) 95%, darken($yellow, 50%) 100%);
+    padding: 0.125em;
+    font-size: 3em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.police-tape--1 {
+    transform: rotate(20deg);
+    position: absolute;
+    top: 40%;
+    left: -5%;
+    right: -5%;
+    z-index: 2;
+    margin-top: 0;
+}
+
+.police-tape--2 {
+    transform: rotate(-20deg);
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    right: -5%;
+}
+
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+.Rpg-Button {
+    background-color: #ffbc4f;
+    color: black;
+    font-weight: 500;
+}
+
+    .Rpg-Button:hover {
+        opacity: 0.95;
+    }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+
+@font-face {
+    font-family: sigilos;
+    src: url('https://beta.fichasop.com/assets/css/sigilos.ttf');
+    font-size: 14px;
+}
+
+    @media (min-width: 768px) {
+        html {
+            font-size: 16px;
+        }
+    }
+
+    .border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px thin #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}

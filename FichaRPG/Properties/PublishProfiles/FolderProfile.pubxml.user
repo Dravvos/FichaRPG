@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2024-10-10T03:28:21.3556489Z;True|2024-10-10T00:18:49.2569780-03:00;True|2024-10-09T16:19:27.6995266-03:00;True|2024-10-09T16:16:13.5598966-03:00;True|2024-10-09T16:02:36.5215829-03:00;True|2024-10-09T15:50:01.9828581-03:00;True|2024-10-09T15:47:25.1972266-03:00;True|2024-10-09T15:41:02.5805955-03:00;True|2024-10-09T15:37:51.9059954-03:00;True|2024-10-09T15:28:45.3018897-03:00;True|2024-10-09T15:24:46.6072856-03:00;True|2024-10-09T15:18:30.2521510-03:00;True|2024-10-09T15:06:25.2364379-03:00;True|2024-10-09T14:58:36.1155121-03:00;True|2024-10-09T14:50:58.4070482-03:00;True|2024-10-09T14:39:55.3130675-03:00;True|2024-10-09T14:28:52.8066960-03:00;True|2024-10-09T13:48:51.7391335-03:00;True|2024-10-09T13:35:20.1058018-03:00;True|2024-10-09T13:30:38.9144385-03:00;True|2024-10-09T13:25:37.6815482-03:00;True|2024-10-09T12:30:49.3386014-03:00;True|2024-10-09T02:34:33.3818840-03:00;True|2024-10-09T02:06:00.9904643-03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=danieloliveira.database.windows.net%3bInitial Catalog=RPG%3bUser ID=superuser%3bPassword=%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%2a%3bTrust Server Certificate=True</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
