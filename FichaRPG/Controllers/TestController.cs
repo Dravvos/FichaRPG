@@ -4,7 +4,7 @@ namespace FichaRPG.Controllers
 {
     public class TestController : Controller
     {
-        public IActionResult Version()
+        public IActionResult Index()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
