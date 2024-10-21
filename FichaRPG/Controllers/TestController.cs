@@ -4,12 +4,9 @@ using System.Text.Json;
 
 namespace FichaRPG.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
     public class TestController : Controller
     {
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Version()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();

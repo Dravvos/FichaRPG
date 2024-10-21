@@ -51,6 +51,7 @@ namespace FichaRPG
             }
             app.UseStaticFiles();
             app.UseSession();
+
             // Use other middleware as needed
 
             app.UseEndpoints(endpoints =>
