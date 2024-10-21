@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FichaRPG.Controllers
@@ -21,6 +22,18 @@ namespace FichaRPG.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult Version()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            string? version = fvi.FileVersion;
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+            return new JsonResult(version, options);
         }
 
         public IActionResult Privacy()
