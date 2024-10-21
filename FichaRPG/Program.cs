@@ -11,7 +11,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllersWithViews();
 var vvx = new Startup(builder.Configuration);
 vvx.ConfigureServices(builder.Services);
-
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+});
 var app = builder.Build();
 vvx.Configure(app, builder.Environment);
 // Configure the HTTP request pipeline.

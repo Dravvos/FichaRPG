@@ -30,12 +30,16 @@ namespace FichaRPG
                 options.IdleTimeout = TimeSpan.FromSeconds(1200);
             });
             services.AddRazorPages();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Configure other middleware as needed
-
+            
             app.UseRouting();
             if (env.IsDevelopment())
             {
@@ -52,6 +56,9 @@ namespace FichaRPG
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
                 // Map other endpoints as needed
             });
         }
