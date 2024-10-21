@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FichaRPG.Controllers
 {
@@ -7,6 +8,7 @@ namespace FichaRPG.Controllers
     public class TestController : Controller
     {
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Version()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
