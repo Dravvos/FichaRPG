@@ -1,0 +1,73 @@
+﻿@model CampanhaViewModel
+@using FichaRPG.DAO;
+
+@{
+    var personagemDao = new PersonagemDAO();
+    var usuarioDao = new UsuarioDAO();
+    var campanhaPersonagemDao = new CampanhaPersonagemDAO();
+    var campanhaUsuarioDao = new CampanhaUsuarioDAO();
+    var usuariosCampanha = campanhaUsuarioDao.ObterUsuariosDeUmaCampanha(Model.Id);
+    var personagensCampanha = campanhaPersonagemDao.ObterPersonagensDeUmaCampanha(Model.Id);
+    var classeDao = new ClasseDAO();
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/campanha.css" />
+</head>
+
+<div class="container pt-3 pb-3 mb-5">
+    <div class="row mb-4">
+        <div class="col-xxl-4 col-lg-4 col-md-4 col-sm-6">
+            <a asp-action="PersonagensParaCampanha" asp-controller="Campanha" asp-route-campanhaId="@Model.Id" class="btn Rpg-Button">Adicionar Personagem</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xxl-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <h3>@Model.Nome</h3>
+            <img id="imgPreview" src="data:image/jpeg;base64,@Model.FotoCapaBase64" class="figure-img" />
+
+        </div>
+        <div class="col-xxl-9 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+            <p class="text-justify">
+                @Model.Descricao
+            </p>
+        </div>
+    </div>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="personagens-tab" data-bs-toggle="tab" data-bs-target="#Personagens" role="tab" aria-controls="Personagens" aria-selected="true" href="#">Personagens</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="jogadores-tab" data-bs-toggle="tab" data-bs-target="#Jogadores" role="tab" aria-controls="Jogadores" aria-selected="false" href="#">Jogadores</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content" id="campanhaTabs">
+        <div class="tab-pane fade show active pt-4" id="Personagens" role="tabpanel" aria-labelledby="personagens-tab">
+            @foreach (var pc in personagensCampanha)
+            {
+                <div class="card bg-dark text-white p-3 w-25">
+                    <h3>@personagemDao.Consulta(pc.PersonagemId).Nome</h3>
+                    <h5>@classeDao.Consulta(personagemDao.Consulta(pc.PersonagemId).ClasseId).Nome</h5>
+                    <a style="font-size:14px;" class="btn align-self-end w-50 Rpg-Button mt-1" asp-action="Details" asp-controller="Personagem" asp-route-id="@pc.PersonagemId">Acessar Ficha</a>
+                </div>
+                
+            }
+        </div>
+        <div class="tab-pane fade pt-4" id="Jogadores" role="tabpanel" aria-labelledby="jogadores-tab">
+            
+            @foreach (var uc in usuariosCampanha)
+            {
+                <div class="card bg-dark text-white p-3 w-50">
+                    <h3>Nome: @usuarioDao.Consulta(uc.UsuarioId).Nome</h3>
+                    <h5>Usuário: @usuarioDao.Consulta(uc.UsuarioId).UsuarioLogin</h5>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

@@ -26,12 +26,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJtYVxGb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Campanha/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcGFuaGFcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Campanha/Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcGFuaGFcRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Campanha/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcGFuaGFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Campanha/PersonagensParaCampanha.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FtcGFuaGFcUGVyc29uYWdlbnNQYXJhQ2FtcGFuaGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Home/Version.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWZXJzaW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Microsoft Visual Studio/source/repos/FichaRPG/FichaRPG/Views/Item/Form.cshtml]

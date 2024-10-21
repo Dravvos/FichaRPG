@@ -1,0 +1,43 @@
+﻿@model List<PersonagemViewModel>
+@using FichaRPG.DAO;
+@{
+    var classeDao = new ClasseDAO();
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/personagem.css" />
+</head>
+
+<div class="container">
+    <div class="rpg-coluna">
+        <div class="rpg-personagens">
+            <div class="rpg-card-body">
+                <div class="rpg-header">
+                    <h2 class="text-center">Seus Personagens</h2>
+                </div>
+
+                @foreach (var Personagem in Model)
+                {
+                    <div class="rpg-row w-25">
+                        <div class="rpg-card">
+                            <div class="rpg-card-2">
+                                <div class="rpg-card-body">
+
+                                    <div class="rpg-card-title">
+                                        <label class="text-danger fw-bold">@Personagem.Nome</label>
+                                    </div>
+
+                                    <span style="height:100px" class="text-white bg-dark w-100">@classeDao.Consulta(Personagem.ClasseId).Nome</span>
+                                    <a asp-action="AtribuirCampanhaPersonagem" asp-controller="Campanha" asp-route-personagemId="@Personagem.Id"
+                                    asp-route-campanhaId="@ViewBag.CampanhaId"
+                                    class="Rpg-Button btn mt-2">Adicionar Personagem</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
