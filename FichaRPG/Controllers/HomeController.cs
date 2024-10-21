@@ -24,7 +24,6 @@ namespace FichaRPG.Controllers
             return View();
         }
 
-        [HttpGet]
         public IActionResult Version()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
