@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/64hkMhVQPjYyRQvZA+yym/tBc3uU8Wa/Irge5/R3V4=",
+  "Hash": "JtfbR8d0Bna1pemA774yFl6rjpYzhpOTH1657RMQNfY=",
   "Source": "FichaRPG",
   "BasePath": "_content/FichaRPG",
   "Mode": "Default",
@@ -1231,6 +1231,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\cadastro.css"
+    },
+    {
+      "Identity": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\css\\campanha.css",
+      "SourceId": "FichaRPG",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\",
+      "BasePath": "_content/FichaRPG",
+      "RelativePath": "css/campanha.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\campanha.css"
     },
     {
       "Identity": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\css\\Details.css",

@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\cadastro.css"
     },
     {
+      "Id": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\css\\campanha.css",
+      "PackagePath": "staticwebassets\\css\\campanha.css"
+    },
+    {
       "Id": "D:\\Microsoft Visual Studio\\source\\repos\\FichaRPG\\FichaRPG\\wwwroot\\css\\fontawesome.min.css",
       "PackagePath": "staticwebassets\\css\\fontawesome.min.css"
     },
