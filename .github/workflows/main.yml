@@ -31,7 +31,7 @@ jobs:
         host: ${{ secrets.VM_HOST }}
         username: ${{ secrets.VM_USERNAME }}
         password: ${{ secrets.VM_PASSWORD }}
-        source: './publish'
+        source: './publish/publish'
         target: '/var/www/html/FichaRPG'
         port: 22
     
