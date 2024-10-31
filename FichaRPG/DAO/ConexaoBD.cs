@@ -4,9 +4,13 @@ namespace FichaRPG.DAO
 {
     public class ConexaoBD
     {
+        public static string? Conexao { get; set; }
         public static SqlConnection GetConexao()
         {
-            string cx = "Data Source=DESKTOP-M4BH5T6\\LOCALHOST; Database=RPG; user id=sa; password=123456";
+            Conexao = Environment.GetEnvironmentVariable("RPGConnection");
+            string? cx = Conexao;
+            if (string.IsNullOrEmpty(cx))
+                throw new Exception("Não foi encontrada string de conexão");
             SqlConnection conexao = new SqlConnection(cx);
             conexao.Open();
             return conexao;
