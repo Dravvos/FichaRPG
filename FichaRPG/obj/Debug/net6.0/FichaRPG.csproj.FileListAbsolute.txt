@@ -167,3 +167,7 @@ D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\obj\Debug\net6.0\refin
 D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\obj\Debug\net6.0\FichaRPG.pdb
 D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\obj\Debug\net6.0\FichaRPG.genruntimeconfig.cache
 D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\obj\Debug\net6.0\ref\FichaRPG.dll
+D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\bin\Debug\net6.0\publish\publish\appsettings.Development.json
+D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\bin\Debug\net6.0\publish\publish\appsettings.json
+D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\bin\Debug\net6.0\publish\publish\FichaRPG.deps.json
+D:\Microsoft Visual Studio\source\repos\FichaRPG\FichaRPG\bin\Debug\net6.0\publish\publish\FichaRPG.runtimeconfig.json
