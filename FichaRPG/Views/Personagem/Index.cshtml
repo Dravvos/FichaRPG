@@ -34,7 +34,7 @@
 
                                     <textarea style="height:100px" class="text-white bg-dark w-100">@Personagem.Historia</textarea>
                                     <div class="rpg-card-footer">
-                                        <a class="btn btn-outline-primary" href="/Personagem/Details?id=@Personagem.Id">Dar uma Olhada - @Personagem.Nome</a>
+                                        <a class="btn btn-outline-primary" asp-action="Details" asp-controller="Personagem" asp-route-id="@Personagem.Id">Dar uma Olhada - @Personagem.Nome</a>
                                     </div>
                                 </div>
                             </div>
