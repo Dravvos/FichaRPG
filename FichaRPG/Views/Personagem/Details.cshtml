@@ -28,7 +28,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/css/Details.css?v=1" />
+    <link rel="stylesheet" href="~/css/Details.css?v=1" asp-append-version="true" />
 
 </head>
 <body>
@@ -50,7 +50,7 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -127,7 +127,7 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -158,13 +158,13 @@
                                     </i>
                                     <i class="fa fa-chevron-right">
                                     </i>
-                                    
+
                                 </button>
                                 <button onclick="AdicionaMaisUm('vida')" class="btn btn-sm icone float-right">
                                     +1
                                     <i class="fa fa-chevron-right">
                                     </i>
-                                    
+
                                 </button>
                                 <input id="Vida" onmousemove="AtualizaPv()" class="rpg-range-vida" type="range" min="0" value="@Model.PontosDeVidaAtual" max="@Model.PontosDeVidaMaximo" />
                                 <span id="rangeValuePv">@Model.PontosDeVidaAtual</span>
@@ -190,13 +190,13 @@
                                     </i>
                                     <i class="fa fa-chevron-right">
                                     </i>
-                                    
+
                                 </button>
                                 <button onclick="AdicionaMaisUm('sanidade')" class="btn btn-sm icone float-right">
                                     +1
                                     <i class="fa fa-chevron-right">
                                     </i>
-                                    
+
                                 </button>
                                 <input id="Sanidade" class="rpg-range-sanidade" onmousemove="AtualizaSan()" type="range" min="0" value="@Model.SanidadeAtual" max="@Model.SanidadeMaxima" />
                                 <span id="rangeValueSan">@Model.SanidadeAtual</span>
@@ -222,13 +222,13 @@
                                     </i>
                                     <i class="fa fa-chevron-right">
                                     </i>
-                                    
+
                                 </button>
                                 <button onclick="AdicionaMaisUm('pontos de esforço')" class="btn btn-sm icone float-right">
                                     +1
                                     <i class="fa fa-chevron-right">
                                     </i>
-                                    
+
                                 </button>
                                 <input id="Pe" class="rpg-range-pe" onmousemove="AtualizaPe()" type="range" min="0" value="@Model.PontosDeEsforcoAtual" max="@Model.PontosDeEsforcoMaximo" />
                                 <span id="rangeValuePe">@Model.PontosDeEsforcoAtual</span>
@@ -250,7 +250,7 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -282,7 +282,7 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -301,15 +301,15 @@
                                             <br />
                                             @if (valores.ElementAt(i) == 5)
                                             {
-                                                <span class="text-success">@pericias.ElementAt(i-1)</span>
+                                                <span class="text-success">@pericias.ElementAt(i - 1)</span>
                                             }
                                             else if (valores.ElementAt(i) == 10)
                                             {
-                                                <span class="text-primary">@pericias.ElementAt(i-1)</span>
+                                                <span class="text-primary">@pericias.ElementAt(i - 1)</span>
                                             }
                                             else if (valores.ElementAt(i) == 15)
                                             {
-                                                <span class="text-warning">@pericias.ElementAt(i-1)</span>
+                                                <span class="text-warning">@pericias.ElementAt(i - 1)</span>
                                             }
 
                                         </button>
@@ -345,7 +345,7 @@
                             </a>
                         </div>
                         <div class="float-right">
-                            <a href="Edit?id=@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -463,7 +463,7 @@
                                             <i class="fa fa-2x fa-dice-d20"></i><br />
                                             @if (string.IsNullOrEmpty(@dados.ElementAt(i).Nome))
                                             {
-                                                <span>@dados.ElementAt(i).Dado.Replace("m","+")</span>
+                                                <span>@dados.ElementAt(i).Dado.Replace("m", "+")</span>
                                             }
                                             else
                                             {
@@ -548,7 +548,7 @@
                                         </td>
                                         <td class="rpg-td">
                                             @armas.ElementAt(i).Critico
-                                            <a href="~/Arma/Edit?id=@armas.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                            <a asp-action="Edit" asp-controller="Arma" asp-route-id="@armas.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button onclick="javascript:apagarArma(@armas.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
@@ -585,7 +585,7 @@
                                         </td>
                                         <td class="rpg-td">
                                             @itens.ElementAt(i).Descricao
-                                            <a href="~/Item/Edit?id=@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                            <a asp-action="Edit" asp-controller="Item" asp-route-id="@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button onclick="javascript:apagarItem(@itens.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
@@ -644,7 +644,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="float-right">
-                                                            <a href="~/Ritual/Editar?id=@Rituais.ElementAt(i).Id&personagemId=@Model.Id" class="btn btn-sm float-right text-warning">
+                                                            <a asp-action="Editar" asp-controller="Ritual" asp-route-id="@Rituais.ElementAt(i).Id" asp-route-personagemId="@Model.Id" class="btn btn-sm float-right text-warning">
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
                                                         </div>

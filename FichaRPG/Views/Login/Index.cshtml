@@ -6,7 +6,7 @@
   
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="./css/login.css"/>
+        <link rel="stylesheet" href="~/css/login.css" asp-append-version="true"/>
     </head>
     <div class="limiter">
         <div class="container-login">
@@ -36,7 +36,7 @@
                     
                     <div class="txt1 text-center p-t-54 p-b-20">
 						<span class="text-light">Não possui uma conta?</span> <br />
-                        <a href="Usuario/Create">Cadastre-se</a>
+                        <a asp-action="Create" asp-controller="Usuario" >Cadastre-se</a>
 					</div>
                 </form>
             </div>
