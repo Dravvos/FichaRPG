@@ -39,7 +39,7 @@ namespace FichaRPG
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Configure other middleware as needed
-            
+            app.UsePathBase("/FichaRPG");
             app.UseRouting();
             if (env.IsDevelopment())
             {
@@ -48,7 +48,7 @@ namespace FichaRPG
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UsePathBase("/FichaRPG");
+                
             }
             app.UseStaticFiles();
             app.UseSession();
@@ -58,12 +58,13 @@ namespace FichaRPG
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+      
                 endpoints.MapControllerRoute(
                    name: "default",
                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 // Map other endpoints as needed
             });
         }
-       
+
     }
 }

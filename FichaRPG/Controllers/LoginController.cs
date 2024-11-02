@@ -15,6 +15,10 @@ namespace FichaRPG.Controllers
             ViewBag.Logado = HelperControllers.VerificaUsuarioLogado(HttpContext.Session);
             return View();
         }
+        public IActionResult Test()
+        {
+            return Content(Request.Path);
+        }
         public IActionResult Login(UsuarioViewModel model)
         {
             try
@@ -37,7 +41,7 @@ namespace FichaRPG.Controllers
                             var protocol = HttpContext.Request.Scheme;
                             var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
                             
-                            return Redirect(redirectUrl);
+                            return RedirectToAction("Index","Personagem");
                         }
                         else
                         {
