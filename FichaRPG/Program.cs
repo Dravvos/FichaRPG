@@ -15,6 +15,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = null;
 });
+
 var app = builder.Build();
 vvx.Configure(app, builder.Environment);
 // Configure the HTTP request pipeline.
@@ -27,7 +28,12 @@ else
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-    
+    app.Use((context, next) =>
+    {
+        context.Request.PathBase = "/FichaRPG";
+        return next();
+    });
+
 }
 app.UsePathBase("/FichaRPG");
 app.UseHttpsRedirection();
@@ -36,7 +42,8 @@ app.UseStaticFiles();
 app.UseRouting(); 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}",
+    dataTokens: new { pathBase = "/FichaRPG" });
 
 app.UseAuthentication();
 app.UseAuthorization();
