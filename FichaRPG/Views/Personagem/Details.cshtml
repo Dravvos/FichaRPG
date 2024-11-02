@@ -24,6 +24,7 @@
     List<ArmasViewModel> armas = armaDao.Listar(Model.Id);
     int pesoArmas = armaDao.PesoArmas(Model.Id);
     int pesoItens = itemDao.PesoItens(Model.Id);
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 }
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -50,7 +51,8 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                               asp-host="https" asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -127,7 +129,8 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                               asp-protocol="https" asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -250,7 +253,8 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                               asp-protocol="https" asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -282,7 +286,8 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                               asp-protocol="https" asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -345,7 +350,8 @@
                             </a>
                         </div>
                         <div class="float-right">
-                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                               asp-protocol="https" asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -548,7 +554,9 @@
                                         </td>
                                         <td class="rpg-td">
                                             @armas.ElementAt(i).Critico
-                                            <a asp-action="Edit" asp-controller="Arma" asp-route-id="@armas.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                               asp-protocol="https" asp-action="Edit" asp-controller="Arma"
+                                               asp-route-id="@armas.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button onclick="javascript:apagarArma(@armas.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
@@ -585,7 +593,8 @@
                                         </td>
                                         <td class="rpg-td">
                                             @itens.ElementAt(i).Descricao
-                                            <a asp-action="Edit" asp-controller="Item" asp-route-id="@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                               asp-protocol="https" asp-action="Edit" asp-controller="Item" asp-route-id="@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button onclick="javascript:apagarItem(@itens.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
@@ -644,7 +653,10 @@
                                                             </a>
                                                         </div>
                                                         <div class="float-right">
-                                                            <a asp-action="Editar" asp-controller="Ritual" asp-route-id="@Rituais.ElementAt(i).Id" asp-route-personagemId="@Model.Id" class="btn btn-sm float-right text-warning">
+                                                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                                               asp-protocol="https" asp-action="Editar" asp-controller="Ritual" 
+                                                               asp-route-id="@Rituais.ElementAt(i).Id"
+                                                               asp-route-personagemId="@Model.Id" class="btn btn-sm float-right text-warning">
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
                                                         </div>

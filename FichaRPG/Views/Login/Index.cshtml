@@ -1,7 +1,7 @@
 ﻿@model UsuarioViewModel
 @{
     ViewData["Title"] = "Login";
-    Layout = "./Views/Shared/_Layout.cshtml";
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMNET");
 }
   
     <head>
@@ -36,7 +36,8 @@
                     
                     <div class="txt1 text-center p-t-54 p-b-20">
 						<span class="text-light">Não possui uma conta?</span> <br />
-                        <a asp-action="Create" asp-controller="Usuario" >Cadastre-se</a>
+                    <a asp-protocol="https"
+                        asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)" asp-action="Create" asp-controller="Usuario">Cadastre-se</a>
 					</div>
                 </form>
             </div>

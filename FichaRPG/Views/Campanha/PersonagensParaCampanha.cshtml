@@ -2,6 +2,7 @@
 @using FichaRPG.DAO;
 @{
     var classeDao = new ClasseDAO();
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 }
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -29,7 +30,9 @@
                                     </div>
 
                                     <span style="height:100px" class="text-white bg-dark w-100">@classeDao.Consulta(Personagem.ClasseId).Nome</span>
-                                    <a asp-action="AtribuirCampanhaPersonagem" asp-controller="Campanha" asp-route-personagemId="@Personagem.Id"
+                                    <a asp-protocol="https"
+                                        asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                       asp-action="AtribuirCampanhaPersonagem" asp-controller="Campanha" asp-route-personagemId="@Personagem.Id"
                                     asp-route-campanhaId="@ViewBag.CampanhaId"
                                     class="Rpg-Button btn mt-2">Adicionar Personagem</a>
                                 </div>

@@ -1,31 +1,39 @@
 ﻿@using FichaRPG.Controllers
 @using Microsoft.AspNetCore.Mvc;
 @using Microsoft.AspNetCore.Http
+@{
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var basePath = (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+      ? "https://www.danieloliveira.net.br/FichaRPG/"
+      : "~/";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Ficha de RPG</title>
-    <link rel="stylesheet" href="@Url.Content("./lib/bootstrap/dist/css/bootstrap.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("./lib/bootstrap/dist/css/bootstrap-grid.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("./lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("./lib/bootstrap/dist/css/bootstrap.rtl.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("./lib/bootstrap/dist/css/bootstrap-utilities.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("./lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-grid.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap.rtl.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-utilities.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css")" />
 
 
-    <link rel="stylesheet" href="@Url.Content("./css/site.css")" />
-    <link rel="stylesheet" href="@Url.Content("./css/all.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("./css/fontawesome.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("./css/login.css")" />
-    <link rel="stylesheet" href="@Url.Content("./css/Details.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/site.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/all.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/fontawesome.min.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/login.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/Details.css")" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white  box-shadow mb-3 nav-topo">
             <div class="container">
-                <a class="navbar-brand" asp-action="Index" asp-controller="Home" >FichaRPG</a>
+                <a class="navbar-brand" asp-protocol="https"
+                   asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                   asp-action="Index" asp-controller="Home">FichaRPG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,29 +42,36 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link nav-topo"  asp-action="Index" asp-controller="Home" >Home</a>
+                            <a class="nav-link nav-topo" asp-protocol="https"
+                               asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                               asp-action="Index" asp-controller="Home">Home</a>
                         </li>
                         @if (ViewBag.Logado == true)
                         {
                             <li class="nav-item">
-                                <a class="nav-link nav-topo" asp-action="Index" asp-controller="Personagem" >Personagens</a>
+                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                   asp-protocol="https" asp-action="Index" asp-controller="Personagem">Personagens</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link nav-topo" asp-action="Index" asp-controller="Campanha" >Campanhas</a>
+                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                   asp-protocol="https" asp-action="Index" asp-controller="Campanha">Campanhas</a>
                             </li>
 
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" asp-action="Logoff" asp-controller="Login" >Sair</a>
+                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                   asp-protocol="https" asp-action="Logoff" asp-controller="Login">Sair</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo"  asp-host="~/FichaRPG" asp-action="Create" asp-controller="Usuario" >Cadastrar</a>
+                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                   asp-protocol="https" asp-action="Create" asp-controller="Usuario">Cadastrar</a>
                             </li>
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" asp-action="Index" asp-controller="Login" >Entrar</a>
+                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                   asp-protocol="https" asp-action="Index" asp-controller="Login">Entrar</a>
                             </li>
                         }
                     </ul>
@@ -72,7 +87,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container text-white">
-            &copy; @DateTime.Now.Year - Ficha de RPG - <a asp-action="Privacy" asp-controller="Home" >Privacy</a>
+            &copy; @DateTime.Now.Year - Ficha de RPG - <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                                                          asp-protocol="https" asp-action="Privacy" asp-controller="Home">Privacy</a>
         </div>
     </footer>
     <script src="@Url.Content("./lib/jquery/dist/jquery-3.7.0.min.js")"></script>

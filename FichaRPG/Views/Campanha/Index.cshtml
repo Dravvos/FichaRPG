@@ -1,5 +1,6 @@
 ﻿@model List<CampanhaViewModel>
 @{
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 }
 
 <head>
@@ -10,7 +11,9 @@
 
 <div class="container-campanha container">
     <div>
-        <a asp-action="Create" class="btn Rpg-Button" style="float:right">Criar Campanha</a>
+        <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+        asp-protocol="https" asp-controller="Campanha"
+           asp-action="Create" class="btn Rpg-Button" style="float:right">Criar Campanha</a>
         <br />
         <div class="campanha-row">
             @foreach(var campanha in Model)
@@ -20,10 +23,13 @@
                     <a href="javascript:apagarCampanha(@campanha.Id)" class="btn btn-lg text-danger">
                         <i class="fa fa-trash"></i>
                     </a>
-                    <a asp-action="Edit" asp-controller="Campanha" asp-route-id="@campanha.Id" class="btn btn-lg text-warning">
+                    <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                    asp-protocol="https"
+                       asp-action="Edit" asp-controller="Campanha" asp-route-id="@campanha.Id" class="btn btn-lg text-warning">
                         <i class="fa fa-pencil"></i>
                     </a>
-                    <a asp-action="Details" asp-controller="Campanha" asp-route-id="@campanha.Id" class="btn btn-lg text-white">
+                    <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)" asp-protocol="https"
+                       asp-action="Details" asp-controller="Campanha" asp-route-id="@campanha.Id" class="btn btn-lg text-white">
                         <i class="fa fa-circle-info"></i>
                     </a>
                     <img id="imgPreview" src="data:image/jpeg;base64,@campanha.FotoCapaBase64" class="figure-img" />
