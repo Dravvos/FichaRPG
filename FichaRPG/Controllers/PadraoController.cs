@@ -6,9 +6,11 @@ using System;
 using Microsoft.AspNetCore.Mvc.Filters;
 using FichaRPG.Services;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace FichaRPG.Controllers
 {
+   
     public class PadraoController<T> : Controller where T : PadraoViewModel
     {
         protected bool ExigeAutenticacao { get; set; } = true;

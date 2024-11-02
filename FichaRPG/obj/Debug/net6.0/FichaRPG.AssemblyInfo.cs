@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FichaRPG")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dcb679500b60d66310dca74a9988556b3e2db8b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfb44e5f54f41b578fd45930e75b51b23a936912")]
 [assembly: System.Reflection.AssemblyProductAttribute("FichaRPG")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FichaRPG")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

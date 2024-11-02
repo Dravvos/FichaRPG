@@ -17,7 +17,7 @@ namespace FichaRPG.Controllers
         }
         public IActionResult Test()
         {
-            return Content(Request.PathBase);
+            return Content(Request.Path);
         }
         public IActionResult Login(UsuarioViewModel model)
         {
