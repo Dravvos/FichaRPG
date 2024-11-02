@@ -1,5 +1,10 @@
 ﻿@model CampanhaViewModel
-
+@{
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var formActionUrl = environment == "Production"
+          ? "https://www.danieloliveira.net.br/FichaRPG/Campanha/Save"
+          : Url.Action("Save", "Campanha");
+}
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -17,7 +22,7 @@
         <h2 class="text-center">Alterar Campanha</h2>
     }
 
-    <form asp-action="save" enctype="multipart/form-data" style="float:left" class="container-campanha">
+    <form action="@formActionUrl" enctype="multipart/form-data" style="float:left" class="container-campanha">
         <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
         <input hidden name="id" value="@Model.Id" />
         <div class="row">

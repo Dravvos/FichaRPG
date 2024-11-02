@@ -2,16 +2,18 @@
 @{
     ViewData["Title"] = "Login";
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMNET");
+    var formActionUrl = environment == "Production"
+      ? "https://www.danieloliveira.net.br/FichaRPG/Login/Login"
+      : Url.Action("Login", "Login");
 }
   
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="@Url.Content("./css/login.css")" asp-append-version="true"/>
     </head>
     <div class="limiter">
         <div class="container-login">
             <div class="wrap-login p-l-55 p-r-55 pt-4 p-b-54">
-                <form class="login-form" asp-controller="Login" asp-action="Login" >
+                <form class="login-form" action="@formActionUrl" >
                     <span class="login-form-title pb-5">Login</span>
                     <div class="wrap-input validate-input m-b-23">
                         <span class="label-input">Usuário ou Email</span>

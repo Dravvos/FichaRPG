@@ -2,7 +2,10 @@
 @using FichaRPG.Enums;
 @{
     var origens = ViewBag.Origens as List<SelectListItem>;
-
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var formActionUrl = environment == "Production"
+     ? "https://www.danieloliveira.net.br/FichaRPG/Personagem/Save"
+     : Url.Action("Save", "Personagem");
 }
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -12,7 +15,7 @@
 <div class="container">
 
     <h1 class="text-center">Criar um Novo Personagem</h1>
-    <form asp-action="Save">
+    <form action="@formActionUrl">
         <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
         <input hidden name="id" value="@Model.Id" />
         <div class="row">
