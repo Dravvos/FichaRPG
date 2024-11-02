@@ -34,7 +34,7 @@ namespace FichaRPG.Controllers
                             SessionService.SalvaCache<UsuarioViewModel>(HttpContext, "Usuario", model);
                             
                             HttpContext.Session.SetString("Logado", "true");
-                            var redirectUrl = $"{Request.PathBase}{Url.Action("Index", "Personagem")}";
+                            var redirectUrl = Url.Action("Index","Personagem");
                             return Redirect(redirectUrl);
                         }
                         else
