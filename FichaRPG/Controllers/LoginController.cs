@@ -37,7 +37,7 @@ namespace FichaRPG.Controllers
                             var protocol = HttpContext.Request.Scheme;
                             var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
                             
-                            return Redirect(Url.Action("Index","Personagem",null,Request.Scheme));
+                            return Redirect(redirectUrl);
                         }
                         else
                         {
