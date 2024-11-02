@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="@Url.Content("./lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css")" />
 
 
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/all.min.css" />
-    <link rel="stylesheet" href="~/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="~/css/login.css" />
-    <link rel="stylesheet" href="~/css/Details.css" />
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/all.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/fontawesome.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/login.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/Details.css")" />
 </head>
 <body>
     <header>
@@ -34,7 +34,7 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link nav-topo" asp-action="Index" asp-controller="Home" >Home</a>
+                            <a class="nav-link nav-topo"  asp-action="Index" asp-controller="Home" >Home</a>
                         </li>
                         @if (ViewBag.Logado == true)
                         {
@@ -53,7 +53,7 @@
                         else
                         {
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" asp-action="Create" asp-controller="Usuario" >Cadastrar</a>
+                                <a class="nav-link nav-topo" asp-host="FichaRPG" asp-action="Create" asp-controller="Usuario" >Cadastrar</a>
                             </li>
                             <li class="nav-item text-right">
                                 <a class="nav-link nav-topo" asp-action="Index" asp-controller="Login" >Entrar</a>
@@ -75,13 +75,13 @@
             &copy; @DateTime.Now.Year - Ficha de RPG - <a asp-action="Privacy" asp-controller="Home" >Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery-3.7.0.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/lib/jquery/dist/jquery-3.7.0.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.min.js")"></script>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/all.min.js"></script>
-    <script src="~/js/fontawesome.min.js"></script>
+    <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/js/all.min.js")"></script>
+    <script src="@Url.Content("~/js/fontawesome.min.js")"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @RenderSection("Scripts", required: false)
 
