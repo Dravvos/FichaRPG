@@ -33,7 +33,10 @@ namespace FichaRPG.Controllers
                         {
                             SessionService.SalvaCache<UsuarioViewModel>(HttpContext, "Usuario", model);
                             HttpContext.Session.SetString("Logado", "true");
-                            return RedirectToAction("Index", "Personagem");
+                            var pathBase = HttpContext.Request.Host;
+                            var protocol = HttpContext.Request.Scheme;
+                            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
+                            return Redirect(redirectUrl);
                         }
                         else
                         {
@@ -70,7 +73,10 @@ namespace FichaRPG.Controllers
             {
                 SessionService.SalvaCache<UsuarioViewModel>(HttpContext, "Usuario", null);
                 HttpContext.Session.Clear();
-                return RedirectToAction("Index","Login");
+                var pathBase = HttpContext.Request.Host;
+                var protocol = HttpContext.Request.Scheme;
+                var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Login")}";
+                return Redirect(redirectUrl);
             }
             catch (Exception erro)
             {

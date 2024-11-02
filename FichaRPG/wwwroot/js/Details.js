@@ -285,7 +285,7 @@ function PopupTreinado(pericia, atributo, num) {
 
     let randomNumber = [];
     for (let i = 0; i < atributo.innerHTML; i++) {
-        randomNumber[i] = (Math.random() * (20 - 1 + 1) + 1).toFixed(0).toString();
+        randomNumber[i] = (Math.random() * (20 - 1 + 1)).toFixed(0).toString();
 
 
         if (i == parseInt(atributo.innerHTML) - 1) {

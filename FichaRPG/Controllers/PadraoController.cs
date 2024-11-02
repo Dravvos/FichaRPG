@@ -120,7 +120,10 @@ namespace FichaRPG.Controllers
                 }
                 if (ExigeAutenticacao && !HelperControllers.VerificaUsuarioLogado(HttpContext.Session))
                 {
-                    contexto.Result = RedirectToAction("Index", "Login");
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Login")}";
+                    contexto.Result = Redirect(redirectUrl);
 
                 }
                 else if(!ExigeAutenticacao && !HelperControllers.VerificaUsuarioLogado(HttpContext.Session))

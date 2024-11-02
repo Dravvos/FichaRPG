@@ -49,7 +49,10 @@ namespace FichaRPG.Controllers
                     else
                         DAO.Update(model);
 
-                    return RedirectToAction("Index", "Campanha");
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
+                    return Redirect(redirectUrl);
                 }
             }
             catch (Exception erro)
@@ -62,14 +65,20 @@ namespace FichaRPG.Controllers
         {
             var dao = new CampanhaUsuarioDAO();
             dao.Delete(id);
-            return RedirectToAction("Index", "Campanha");
+            var pathBase = HttpContext.Request.Host;
+            var protocol = HttpContext.Request.Scheme;
+            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
+            return Redirect(redirectUrl);
         }
 
         public IActionResult DesatribuirPersonagemCampanha(int id)
         {
             var dao = new CampanhaPersonagemDAO();
             dao.Delete(id);
-            return RedirectToAction("Index", "Campanha");
+            var pathBase = HttpContext.Request.Host;
+            var protocol = HttpContext.Request.Scheme;
+            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
+            return Redirect(redirectUrl);
         }
 
         public IActionResult AtribuirCampanhaUsuario(int usuarioId, int campanhaId)
@@ -79,7 +88,10 @@ namespace FichaRPG.Controllers
             model.CampanhaId = campanhaId;
             model.UsuarioId = usuarioId;
             dao.Insert(model);
-            return RedirectToAction("Details", "Campanha", campanhaId);
+            var pathBase = HttpContext.Request.Host;
+            var protocol = HttpContext.Request.Scheme;
+            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Details", "Campanha", campanhaId)}";
+            return Redirect(redirectUrl);
         }
 
         public IActionResult AtribuirCampanhaPersonagem(int personagemId, int campanhaId)
@@ -89,7 +101,10 @@ namespace FichaRPG.Controllers
             model.CampanhaId = campanhaId;
             model.PersonagemId = personagemId;
             dao.Insert(model);
-            return RedirectToAction("Details", "Campanha", campanhaId);
+            var pathBase = HttpContext.Request.Host;
+            var protocol = HttpContext.Request.Scheme;
+            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Details", "Campanha", campanhaId)}";
+            return Redirect(redirectUrl);
         }
 
         public override IActionResult Delete(int id)
@@ -109,7 +124,10 @@ namespace FichaRPG.Controllers
                     daoP.Delete(cp.Id);
                 }
                 DAO.Delete(id);
-                return RedirectToAction("Index", "Campanha");
+                var pathBase = HttpContext.Request.Host;
+                var protocol = HttpContext.Request.Scheme;
+                var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
+                return Redirect(redirectUrl);
             }
             catch (Exception erro)
             {
@@ -129,7 +147,12 @@ namespace FichaRPG.Controllers
             {
                 var model = DAO.Consulta(id);
                 if (model == null)
-                    return RedirectToAction("Index", "Campanha");
+                {
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
+                    return Redirect(redirectUrl);
+                }
 
                 var campanhaUsuarioDao = new CampanhaUsuarioDAO();
                 var campanhaPersonagemDao = new CampanhaPersonagemDAO();
@@ -138,7 +161,12 @@ namespace FichaRPG.Controllers
                 {
                     var campanhasUsuario = campanhaUsuarioDao.ObterUsuariosDeUmaCampanha(id);
                     if (campanhasUsuario.Select(x => x.UsuarioId).Contains(UsuarioLogado.Id) == false)
-                        return RedirectToAction("Index", "Campanha");
+                    {
+                        var pathBase = HttpContext.Request.Host;
+                        var protocol = HttpContext.Request.Scheme;
+                        var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
+                        return Redirect(redirectUrl);
+                    }
 
                     ViewBag.User = UsuarioLogado.Nome;
                     ViewBag.Usuario = UsuarioLogado.Id;
@@ -146,7 +174,12 @@ namespace FichaRPG.Controllers
                     return View("Details", model);
                 }
                 else
-                    return RedirectToAction("Index", "Campanha");
+                {
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
+                    return Redirect(redirectUrl);
+                }
             }
             catch (Exception ex)
             {
@@ -156,7 +189,7 @@ namespace FichaRPG.Controllers
 
         public IActionResult PersonagensParaCampanha(int campanhaId)
         {
-             try
+            try
             {
                 ViewBag.Usuario = UsuarioLogado.Id;
                 ViewBag.CampanhaId = campanhaId;
@@ -165,7 +198,12 @@ namespace FichaRPG.Controllers
                 if (cadastrado != null)
                     return View(cadastrado);
                 else
-                    return RedirectToAction("Create");
+                    {
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Campanha")}";
+                    return Redirect(redirectUrl);
+                }
             }
             catch (Exception erro)
             {

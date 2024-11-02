@@ -34,7 +34,12 @@ namespace FichaRPG.Controllers
                 if (cadastrado != null)
                     return base.Index();
                 else
-                    return RedirectToAction("Create");
+                {
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Personagem")}";
+                    return Redirect(redirectUrl);
+                }
             }
             catch (Exception erro)
             {
@@ -72,7 +77,12 @@ namespace FichaRPG.Controllers
                 var personagem = new PersonagemDAO();
                 PersonagemViewModel model = DAO.Consulta(id);
                 if (model == null)
-                    return RedirectToAction("Index", "Personagem");
+                {
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
+                    return Redirect(redirectUrl);
+                }
 
                 PatenteViewModel patente = _patente.Consulta(DAO.Consulta(id).PatenteId);
                 ClasseViewModel classe = _classe.Consulta(DAO.Consulta(id).ClasseId);
@@ -97,7 +107,12 @@ namespace FichaRPG.Controllers
                     return View("Details", model);
                 }
                 else
-                    return RedirectToAction("Index", "Personagem");
+                {
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
+                    return Redirect(redirectUrl);
+                }
             }
             catch (Exception erro)
             {
@@ -170,8 +185,8 @@ namespace FichaRPG.Controllers
                             }
                             else
                             {
-                                model.PontosDeVidaMaximo = (short)((short) (20 + model.Vigor) + (4 + model.Vigor) * (model.Nex / 5 - 1));
-                                model.PontosDeEsforcoMaximo = (short)((short)(2 + model.Presenca)+ (2+model.Presenca)* (model.Nex / 5 - 1));
+                                model.PontosDeVidaMaximo = (short)((short)(20 + model.Vigor) + (4 + model.Vigor) * (model.Nex / 5 - 1));
+                                model.PontosDeEsforcoMaximo = (short)((short)(2 + model.Presenca) + (2 + model.Presenca) * (model.Nex / 5 - 1));
                                 model.SanidadeMaxima = (short)(12 + 3 * (model.Nex / 5 - 1));
                             }
                         }
@@ -217,7 +232,10 @@ namespace FichaRPG.Controllers
                     else
                         DAO.Update(model);
 
-                    return RedirectToAction(NomeViewIndex);
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action(NomeViewIndex, "Personagem")}";
+                    return Redirect(redirectUrl);
                 }
             }
             catch (Exception erro)
@@ -389,7 +407,7 @@ namespace FichaRPG.Controllers
             }
         }
         [HttpPost]
-        public IActionResult AdicionaUm(int id,string caracteristica)
+        public IActionResult AdicionaUm(int id, string caracteristica)
         {
             try
             {
@@ -399,15 +417,15 @@ namespace FichaRPG.Controllers
                 switch (caracteristica)
                 {
                     case "vida":
-                        model.PontosDeVidaAtual+=1;
+                        model.PontosDeVidaAtual += 1;
                         dao.UpdateVida(model);
                         return Json(model.PontosDeVidaAtual);
                     case "sanidade":
-                        model.SanidadeAtual+=1;
+                        model.SanidadeAtual += 1;
                         dao.UpdateSanidade(model);
                         return Json(model.SanidadeAtual);
                     case "pontos de esforço":
-                        model.PontosDeEsforcoAtual+=1;
+                        model.PontosDeEsforcoAtual += 1;
                         dao.UpdatePontosDeEsforco(model);
                         return Json(model.PontosDeEsforcoAtual);
                     default:
@@ -571,21 +589,28 @@ namespace FichaRPG.Controllers
         {
             TempData["Personagem"] = JsonConvert.SerializeObject(id);
 
-            return RedirectToAction("Create", "Ritual");
+            var pathBase = HttpContext.Request.Host;
+            var protocol = HttpContext.Request.Scheme;
+            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Ritual")}";
+            return Redirect(redirectUrl);
         }
         [HttpPost]
         public IActionResult Arma(int armaId)
         {
             TempData["ArmaId"] = JsonConvert.SerializeObject(armaId);
-
-            return RedirectToAction("Create", "Arma");
+            var pathBase = HttpContext.Request.Host;
+            var protocol = HttpContext.Request.Scheme;
+            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Arma")}";
+            return Redirect(redirectUrl);
         }
         [HttpPost]
         public IActionResult Item(int itemId)
         {
             TempData["ItemId"] = JsonConvert.SerializeObject(itemId);
-
-            return RedirectToAction("Create", "Item");
+            var pathBase = HttpContext.Request.Host;
+            var protocol = HttpContext.Request.Scheme;
+            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Item")}";
+            return Redirect(redirectUrl);
         }
     }
 }

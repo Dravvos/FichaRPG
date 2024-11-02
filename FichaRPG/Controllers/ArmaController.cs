@@ -60,7 +60,10 @@ namespace FichaRPG.Controllers
                     else
                         DAO.Update(model);
 
-                    return RedirectToAction(NomeViewIndex,"Personagem");
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action(NomeViewIndex, "Personagem")}";
+                    return Redirect(redirectUrl);
                 }
             }
             catch (Exception erro)
@@ -73,7 +76,10 @@ namespace FichaRPG.Controllers
             try
             {
                 DAO.Delete(id);
-                return RedirectToAction(NomeViewIndex,"Personagem");
+                var pathBase = HttpContext.Request.Host;
+                var protocol = HttpContext.Request.Scheme;
+                var redirectUrl = $"{protocol}://{pathBase}{Url.Action(NomeViewIndex, "Personagem")}";
+                return Redirect(redirectUrl);
             }
             catch (Exception erro)
             {

@@ -84,7 +84,10 @@ namespace FichaRPG.Controllers
                     else
                         DAO.Update(model);
 
-                    return RedirectToAction("Index", "Personagem");
+                    var pathBase = HttpContext.Request.Host;
+                    var protocol = HttpContext.Request.Scheme;
+                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
+                    return Redirect(redirectUrl);
                 }
             }
             catch (Exception erro)

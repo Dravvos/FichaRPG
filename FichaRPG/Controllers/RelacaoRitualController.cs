@@ -19,7 +19,10 @@ namespace FichaRPG.Controllers
             {
                 var dao = new RelacaoRitualDAO();
                 dao.Deletar(personagemId,ritualId);
-                return RedirectToAction("Index","Personagem");
+                var pathBase = HttpContext.Request.Host;
+                var protocol = HttpContext.Request.Scheme;
+                var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
+                return Redirect(redirectUrl);
             }
             catch (Exception erro)
             {
