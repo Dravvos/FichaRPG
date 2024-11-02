@@ -24,6 +24,9 @@ jobs:
     
     - name: Publish
       run: dotnet publish ./FichaRPG/FichaRPG.sln -c Release --no-build -o ./publish
+
+    - name: Create tarball
+      run: tar --no-same-permissions -cvf publish.tar ./publish
     
     - name: Deploy to FichaRPG
       uses: appleboy/scp-action@master
