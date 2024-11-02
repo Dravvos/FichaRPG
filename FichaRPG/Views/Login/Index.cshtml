@@ -1,10 +1,6 @@
 ﻿@model UsuarioViewModel
 @{
     ViewData["Title"] = "Login";
-    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-    var formActionUrl = environment == "Production"
-      ? "https://www.danieloliveira.net.br/FichaRPG/Login/Login"
-      : Url.Action("Login", "Login");
 }
   
     <head>
@@ -13,7 +9,7 @@
     <div class="limiter">
         <div class="container-login">
             <div class="wrap-login p-l-55 p-r-55 pt-4 p-b-54">
-                <form class="login-form" action="@formActionUrl" >
+                <form class="login-form" asp-action="Login" >
                     <span class="login-form-title pb-5">Login</span>
                     <div class="wrap-input validate-input m-b-23">
                         <span class="label-input">Usuário ou Email</span>
@@ -38,8 +34,7 @@
                     
                     <div class="txt1 text-center p-t-54 p-b-20">
 						<span class="text-light">Não possui uma conta?</span> <br />
-                    <a asp-protocol="https"
-                        asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)" asp-action="Create" asp-controller="Usuario">Cadastre-se</a>
+                    <a asp-action="Create" asp-controller="Usuario">Cadastre-se</a>
 					</div>
                 </form>
             </div>

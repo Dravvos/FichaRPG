@@ -7,7 +7,7 @@
 }
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="@Url.Content("./css/cadastro.css")" asp-append-version="true"/>
+    <link rel="stylesheet" href="@Url.Content("~/css/cadastro.css")" asp-append-version="true"/>
 </head> 
 <div class="limiter">
         <div class="container-login">
@@ -39,8 +39,7 @@
                     <span  class="text-danger">@ViewBag.Erro</span>
                     <div class="txt1 text-center p-t-54 p-b-20">
 						<span class="text-light">Já possui uma conta?</span> <br />
-                    <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                       asp-protocol="https" asp-action="Index" asp-controller="Login" >Entre</a>
+                    <a asp-action="Index" asp-controller="Login" >Entre</a>
 					</div>
                 </form>
             </div>

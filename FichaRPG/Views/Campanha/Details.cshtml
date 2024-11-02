@@ -9,23 +9,19 @@
     var usuariosCampanha = campanhaUsuarioDao.ObterUsuariosDeUmaCampanha(Model.Id);
     var personagensCampanha = campanhaPersonagemDao.ObterPersonagensDeUmaCampanha(Model.Id);
     var classeDao = new ClasseDAO();
-    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-    var basePath = (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-      ? "https://www.danieloliveira.net.br/FichaRPG/"
-      : "~/";
+    
 }
 
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/campanha.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/campanha.css")" />
 </head>
 
 <div class="container pt-3 pb-3 mb-5">
     <div class="row mb-4">
         <div class="col-xxl-4 col-lg-4 col-md-4 col-sm-6">
-            <a asp-action="PersonagensParaCampanha" asp-protocol="https"
-            asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+            <a asp-action="PersonagensParaCampanha"
                asp-controller="Campanha" asp-route-campanhaId="@Model.Id" class="btn Rpg-Button">Adicionar Personagem</a>
         </div>
     </div>
@@ -59,8 +55,7 @@
                 <div class="card bg-dark text-white p-3 w-25">
                     <h3>@personagemDao.Consulta(pc.PersonagemId).Nome</h3>
                     <h5>@classeDao.Consulta(personagemDao.Consulta(pc.PersonagemId).ClasseId).Nome</h5>
-                    <a style="font-size:14px;" class="btn align-self-end w-50 Rpg-Button mt-1" asp-protocol="https"
-                       asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
+                    <a style="font-size:14px;" class="btn align-self-end w-50 Rpg-Button mt-1"
                        asp-action="Details" asp-controller="Personagem" asp-route-id="@pc.PersonagemId">Acessar Ficha</a>
                 </div>
                 

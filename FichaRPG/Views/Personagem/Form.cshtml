@@ -2,23 +2,17 @@
 @using FichaRPG.Enums;
 @{
     var origens = ViewBag.Origens as List<SelectListItem>;
-    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-    var formActionUrl = environment == "Production"
-     ? "https://www.danieloliveira.net.br/FichaRPG/Personagem/Save"
-     : Url.Action("Save", "Personagem");
-    var basePath = (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-     ? "https://www.danieloliveira.net.br/FichaRPG/"
-     : "~/";
+    
 }
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/personagem.css")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/css/personagem.css")" asp-append-version="true" />
 </head>
 <div class="container">
 
     <h1 class="text-center">Criar um Novo Personagem</h1>
-    <form action="@formActionUrl">
+    <form action="Save">
         <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
         <input hidden name="id" value="@Model.Id" />
         <div class="row">
@@ -310,4 +304,4 @@
 
     </form>
 </div>
-<script src="@Url.Content(basePath + "js/Personagem.js")"></script>
+<script src="@Url.Content("~/js/Personagem.js")"></script>

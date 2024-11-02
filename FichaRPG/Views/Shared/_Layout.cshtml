@@ -13,19 +13,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Ficha de RPG</title>
-    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap.min.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-grid.min.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap.rtl.min.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-utilities.min.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap-grid.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.rtl.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap-utilities.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css")" />
 
 
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/site.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/all.min.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/fontawesome.min.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/login.css")" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/Details.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/all.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/fontawesome.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/login.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/Details.css")" />
 </head>
 <body>
     <header>
@@ -49,29 +49,29 @@
                         @if (ViewBag.Logado == true)
                         {
                             <li class="nav-item">
-                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                                   asp-protocol="https" asp-action="Index" asp-controller="Personagem">Personagens</a>
+                                <a class="nav-link nav-topo" 
+                                   asp-action="Index" asp-controller="Personagem">Personagens</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                                   asp-protocol="https" asp-action="Index" asp-controller="Campanha">Campanhas</a>
+                                <a class="nav-link nav-topo"
+                                   asp-action="Index" asp-controller="Campanha">Campanhas</a>
                             </li>
 
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                                   asp-protocol="https" asp-action="Logoff" asp-controller="Login">Sair</a>
+                                <a class="nav-link nav-topo" 
+                                    asp-action="Logoff" asp-controller="Login">Sair</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                                   asp-protocol="https" asp-action="Create" asp-controller="Usuario">Cadastrar</a>
+                                <a class="nav-link nav-topo"
+                                   asp-action="Create" asp-controller="Usuario">Cadastrar</a>
                             </li>
                             <li class="nav-item text-right">
-                                <a class="nav-link nav-topo" asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                                   asp-protocol="https" asp-action="Index" asp-controller="Login">Entrar</a>
+                                <a class="nav-link nav-topo"
+                                   asp-action="Index" asp-controller="Login">Entrar</a>
                             </li>
                         }
                     </ul>
@@ -91,12 +91,12 @@
                                                           asp-protocol="https" asp-action="Privacy" asp-controller="Home">Privacy</a>
         </div>
     </footer>
-    <script src="@Url.Content(basePath + "lib/jquery/dist/jquery-3.7.0.min.js")"></script>
-    <script src="@Url.Content(basePath + "lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
-    <script src="@Url.Content(basePath + "lib/bootstrap/dist/js/bootstrap.min.js")"></script>
-    <script src="@Url.Content(basePath + "js/site.js")" asp-append-version="true"></script>
-    <script src="@Url.Content(basePath + "js/all.min.js")"></script>
-    <script src="@Url.Content(basePath + "js/fontawesome.min.js")"></script>
+    <script src="@Url.Content("~/lib/jquery/dist/jquery.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/js/all.min.js")"></script>
+    <script src="@Url.Content("~/js/fontawesome.min.js")"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @RenderSection("Scripts", required: false)
 

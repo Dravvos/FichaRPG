@@ -35,10 +35,7 @@ namespace FichaRPG.Controllers
                     return base.Index();
                 else
                 {
-                    var pathBase = HttpContext.Request.Host;
-                    var protocol = HttpContext.Request.Scheme;
-                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Personagem")}";
-                    return Redirect(redirectUrl);
+                    return RedirectToAction("Create","Personagem");
                 }
             }
             catch (Exception erro)
@@ -78,10 +75,7 @@ namespace FichaRPG.Controllers
                 PersonagemViewModel model = DAO.Consulta(id);
                 if (model == null)
                 {
-                    var pathBase = HttpContext.Request.Host;
-                    var protocol = HttpContext.Request.Scheme;
-                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
-                    return Redirect(redirectUrl);
+                    return RedirectToAction("Index","Personagem");
                 }
 
                 PatenteViewModel patente = _patente.Consulta(DAO.Consulta(id).PatenteId);
@@ -108,10 +102,7 @@ namespace FichaRPG.Controllers
                 }
                 else
                 {
-                    var pathBase = HttpContext.Request.Host;
-                    var protocol = HttpContext.Request.Scheme;
-                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
-                    return Redirect(redirectUrl);
+                    return RedirectToAction("Index","Personagem");
                 }
             }
             catch (Exception erro)
@@ -232,10 +223,7 @@ namespace FichaRPG.Controllers
                     else
                         DAO.Update(model);
 
-                    var pathBase = HttpContext.Request.Host;
-                    var protocol = HttpContext.Request.Scheme;
-                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action(NomeViewIndex, "Personagem")}";
-                    return Redirect(redirectUrl);
+                    return RedirectToAction(NomeViewIndex,"Personagem");
                 }
             }
             catch (Exception erro)
@@ -589,28 +577,19 @@ namespace FichaRPG.Controllers
         {
             TempData["Personagem"] = JsonConvert.SerializeObject(id);
 
-            var pathBase = HttpContext.Request.Host;
-            var protocol = HttpContext.Request.Scheme;
-            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Ritual")}";
-            return Redirect(redirectUrl);
+            return RedirectToAction("Create", "Ritual");
         }
         [HttpPost]
         public IActionResult Arma(int armaId)
         {
             TempData["ArmaId"] = JsonConvert.SerializeObject(armaId);
-            var pathBase = HttpContext.Request.Host;
-            var protocol = HttpContext.Request.Scheme;
-            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Arma")}";
-            return Redirect(redirectUrl);
+            return RedirectToAction("Create", "Arma");
         }
         [HttpPost]
         public IActionResult Item(int itemId)
         {
             TempData["ItemId"] = JsonConvert.SerializeObject(itemId);
-            var pathBase = HttpContext.Request.Host;
-            var protocol = HttpContext.Request.Scheme;
-            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Item")}";
-            return Redirect(redirectUrl);
+            return RedirectToAction("Create", "Item");
         }
     }
 }

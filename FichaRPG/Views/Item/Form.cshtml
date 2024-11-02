@@ -1,12 +1,7 @@
 ﻿@model ItensViewModel
-@{
-    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-    var formActionUrl = environment == "Production"
-          ? "https://www.danieloliveira.net.br/FichaRPG/Item/Save"
-          : Url.Action("Save", "Item");
-}
+
 <div class="container">
-    <form action="@formActionUrl">
+    <form asp-action="Save">
         <input type="hidden" name="operacao" value="@ViewBag.Operacao" />
 
         @if (ViewBag.Operacao == "I")

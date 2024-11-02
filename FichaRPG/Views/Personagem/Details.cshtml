@@ -31,7 +31,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="@Url.Content(basePath + "css/Details.css?v=1")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/css/Details.css")" asp-append-version="true" />
 
 </head>
 <body>
@@ -53,8 +53,7 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                               asp-host="https" asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -131,8 +130,7 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                               asp-protocol="https" asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -272,7 +270,7 @@
                                 <button id="Vig" class="atributos vigor hex btn font2">@Model.Vigor</button>
                                 @if(basePath.Length > 2)
                                 {
-                                    <img @basePath.Length src="@basePath + images/atributos.webp" alt="Atributos" />
+                                    <img src="@basePath + images/atributos.webp" alt="Atributos" />
                                 }
                                 else
                                 {
@@ -295,8 +293,7 @@
                             </button>
                         </div>
                         <div class="float-right">
-                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                               asp-protocol="https" asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-controller="Personagem" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil">Do It</i>
                             </a>
                         </div>
@@ -359,8 +356,7 @@
                             </a>
                         </div>
                         <div class="float-right">
-                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                               asp-protocol="https" asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
+                            <a asp-action="Edit" asp-controller="Personagem" asp-route-id="@Model.Id" class="btn btn-sm text-warning">
                                 <i class="fa fa-2x fa-pencil"></i>
                             </a>
                         </div>
@@ -602,8 +598,7 @@
                                         </td>
                                         <td class="rpg-td">
                                             @itens.ElementAt(i).Descricao
-                                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                                               asp-protocol="https" asp-action="Edit" asp-controller="Item" asp-route-id="@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
+                                            <a asp-action="Edit" asp-controller="Item" asp-route-id="@itens.ElementAt(i).Id" class="btn btn-sm text-warning float-right">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
                                             <button onclick="javascript:apagarItem(@itens.ElementAt(i).Id)" class="btn btn-sm text-danger float-right">
@@ -662,8 +657,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="float-right">
-                                                            <a asp-host="@(environment == "Production" ? "www.danieloliveira.net.br/FichaRPG" : null)"
-                                                               asp-protocol="https" asp-action="Editar" asp-controller="Ritual" 
+                                                            <a asp-action="Editar" asp-controller="Ritual" 
                                                                asp-route-id="@Rituais.ElementAt(i).Id"
                                                                asp-route-personagemId="@Model.Id" class="btn btn-sm float-right text-warning">
                                                                 <i class="fa fa-pencil"></i>
@@ -795,4 +789,4 @@
         </div>
     </div>
 </body>
-<script src="@Url.Content(basePath + "js/Details.js")"></script>
+<script src="@Url.Content("js/Details.js")"></script>

@@ -49,10 +49,7 @@ namespace FichaRPG.Controllers
                     else
                         DAO.Update(model);
 
-                    var pathBase = HttpContext.Request.Host;
-                    var protocol = HttpContext.Request.Scheme;
-                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
-                    return Redirect(redirectUrl);
+                    return RedirectToAction("Index", "Campanha");
                 }
             }
             catch (Exception erro)
@@ -65,20 +62,14 @@ namespace FichaRPG.Controllers
         {
             var dao = new CampanhaUsuarioDAO();
             dao.Delete(id);
-            var pathBase = HttpContext.Request.Host;
-            var protocol = HttpContext.Request.Scheme;
-            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
-            return Redirect(redirectUrl);
+            return RedirectToAction("Index", "Campanha");
         }
 
         public IActionResult DesatribuirPersonagemCampanha(int id)
         {
             var dao = new CampanhaPersonagemDAO();
             dao.Delete(id);
-            var pathBase = HttpContext.Request.Host;
-            var protocol = HttpContext.Request.Scheme;
-            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
-            return Redirect(redirectUrl);
+            return RedirectToAction("Index", "Campanha");
         }
 
         public IActionResult AtribuirCampanhaUsuario(int usuarioId, int campanhaId)
@@ -88,10 +79,7 @@ namespace FichaRPG.Controllers
             model.CampanhaId = campanhaId;
             model.UsuarioId = usuarioId;
             dao.Insert(model);
-            var pathBase = HttpContext.Request.Host;
-            var protocol = HttpContext.Request.Scheme;
-            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Details", "Campanha", campanhaId)}";
-            return Redirect(redirectUrl);
+            return RedirectToAction("Details", "Campanha", campanhaId);
         }
 
         public IActionResult AtribuirCampanhaPersonagem(int personagemId, int campanhaId)
@@ -101,10 +89,7 @@ namespace FichaRPG.Controllers
             model.CampanhaId = campanhaId;
             model.PersonagemId = personagemId;
             dao.Insert(model);
-            var pathBase = HttpContext.Request.Host;
-            var protocol = HttpContext.Request.Scheme;
-            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Details", "Campanha", campanhaId)}";
-            return Redirect(redirectUrl);
+            return RedirectToAction("Details", "Campanha", campanhaId);
         }
 
         public override IActionResult Delete(int id)
@@ -124,10 +109,7 @@ namespace FichaRPG.Controllers
                     daoP.Delete(cp.Id);
                 }
                 DAO.Delete(id);
-                var pathBase = HttpContext.Request.Host;
-                var protocol = HttpContext.Request.Scheme;
-                var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
-                return Redirect(redirectUrl);
+                return RedirectToAction("Index", "Campanha");
             }
             catch (Exception erro)
             {
@@ -162,10 +144,7 @@ namespace FichaRPG.Controllers
                     var campanhasUsuario = campanhaUsuarioDao.ObterUsuariosDeUmaCampanha(id);
                     if (campanhasUsuario.Select(x => x.UsuarioId).Contains(UsuarioLogado.Id) == false)
                     {
-                        var pathBase = HttpContext.Request.Host;
-                        var protocol = HttpContext.Request.Scheme;
-                        var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Campanha")}";
-                        return Redirect(redirectUrl);
+                        return RedirectToAction("Index", "Campanha");
                     }
 
                     ViewBag.User = UsuarioLogado.Nome;
@@ -198,11 +177,8 @@ namespace FichaRPG.Controllers
                 if (cadastrado != null)
                     return View(cadastrado);
                 else
-                    {
-                    var pathBase = HttpContext.Request.Host;
-                    var protocol = HttpContext.Request.Scheme;
-                    var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Create", "Campanha")}";
-                    return Redirect(redirectUrl);
+                {
+                    return RedirectToAction("Create", "Campanha");
                 }
             }
             catch (Exception erro)
