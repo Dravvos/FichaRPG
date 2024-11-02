@@ -268,14 +268,8 @@
                                 <button id="Int" class="atributos intelecto hex btn font2">@Model.Intelecto</button>
                                 <button id="Pre" class="atributos presenca hex btn font2">@Model.Presenca</button>
                                 <button id="Vig" class="atributos vigor hex btn font2">@Model.Vigor</button>
-                                @if(basePath.Length > 2)
-                                {
-                                    <img src="@basePath + images/atributos.webp" alt="Atributos" />
-                                }
-                                else
-                                {
-                                    <img src="~/images/atributos.webp" alt="Atributos" />
-                                }
+                                <img src="~/images/atributos.webp" alt="Atributos" />
+
                             </div>
                         </div>
                     </div>
@@ -657,7 +651,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="float-right">
-                                                            <a asp-action="Editar" asp-controller="Ritual" 
+                                                            <a asp-action="Editar" asp-controller="Ritual"
                                                                asp-route-id="@Rituais.ElementAt(i).Id"
                                                                asp-route-personagemId="@Model.Id" class="btn btn-sm float-right text-warning">
                                                                 <i class="fa fa-pencil"></i>
@@ -789,4 +783,4 @@
         </div>
     </div>
 </body>
-<script src="@Url.Content("js/Details.js")"></script>
+<script src="@Url.Content("~/js/Details.js")"></script>
