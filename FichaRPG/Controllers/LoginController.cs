@@ -32,10 +32,9 @@ namespace FichaRPG.Controllers
                         if (SenhaValida && v)
                         {
                             SessionService.SalvaCache<UsuarioViewModel>(HttpContext, "Usuario", model);
+                            
                             HttpContext.Session.SetString("Logado", "true");
-                            var pathBase = HttpContext.Request.Host;
-                            var protocol = HttpContext.Request.Scheme;
-                            var redirectUrl = $"{protocol}://{pathBase}{Url.Action("Index", "Personagem")}";
+                            var redirectUrl = $"{Request.PathBase}{Url.Action("Index", "Personagem")}";
                             return Redirect(redirectUrl);
                         }
                         else
