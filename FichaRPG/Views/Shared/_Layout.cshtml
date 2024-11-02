@@ -91,13 +91,12 @@
                                                           asp-protocol="https" asp-action="Privacy" asp-controller="Home">Privacy</a>
         </div>
     </footer>
-    <script src="@Url.Content("./lib/jquery/dist/jquery-3.7.0.min.js")"></script>
-    <script src="@Url.Content("./lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
-    <script src="@Url.Content("./lib/bootstrap/dist/js/bootstrap.min.js")"></script>
-
-    <script src="@Url.Content("./js/site.js")" asp-append-version="true"></script>
-    <script src="@Url.Content("./js/all.min.js")"></script>
-    <script src="@Url.Content("./js/fontawesome.min.js")"></script>
+    <script src="@Url.Content(basePath + "lib/jquery/dist/jquery-3.7.0.min.js")"></script>
+    <script src="@Url.Content(basePath + "lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content(basePath + "lib/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content(basePath + "js/site.js")" asp-append-version="true"></script>
+    <script src="@Url.Content(basePath + "js/all.min.js")"></script>
+    <script src="@Url.Content(basePath + "js/fontawesome.min.js")"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @RenderSection("Scripts", required: false)
 

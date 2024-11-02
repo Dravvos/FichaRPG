@@ -6,11 +6,14 @@
     var formActionUrl = environment == "Production"
      ? "https://www.danieloliveira.net.br/FichaRPG/Personagem/Save"
      : Url.Action("Save", "Personagem");
+    var basePath = (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+     ? "https://www.danieloliveira.net.br/FichaRPG/"
+     : "~/";
 }
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="@Url.Content("./css/personagem.css")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/personagem.css")" asp-append-version="true" />
 </head>
 <div class="container">
 
@@ -268,15 +271,15 @@
                 <h2 class="text-center">Detalhes não tão importantes para preencher agora</h2>
                 <div class="pt-3">
                     <label class="font-weight-bold">Doenças, manias ou fobias do Personagem</label>
-                    <textarea class="rpg-textarea-2" asp-for="DoencaFobiaMania" ></textarea>
+                    <textarea class="rpg-textarea-2" asp-for="DoencaFobiaMania"></textarea>
                 </div>
                 <div class="pt-3">
                     <label class="font-weight-bold">Anotações </label>
-                    <textarea class="rpg-textarea-2" asp-for="Anotacoes" ></textarea>
+                    <textarea class="rpg-textarea-2" asp-for="Anotacoes"></textarea>
                 </div>
                 <div class="pt-3">
                     <label class="font-weight-bold">Personalidade</label>
-                    <textarea class="rpg-textarea-2" asp-for="Personalidade" ></textarea>
+                    <textarea class="rpg-textarea-2" asp-for="Personalidade"></textarea>
                 </div>
                 <div class="pt-3">
                     <label class="font-weight-bold">Coisas/Pessoas Favoritas </label>
@@ -307,4 +310,4 @@
 
     </form>
 </div>
-<script src="@Url.Content("./js/Personagem.js")"></script>
+<script src="@Url.Content(basePath + "js/Personagem.js")"></script>

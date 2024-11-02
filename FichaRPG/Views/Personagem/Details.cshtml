@@ -4,7 +4,6 @@
 @using Microsoft.AspNetCore.Http;
 @model PersonagemViewModel
 @{
-    Layout = "./Views/Shared/_Layout.cshtml";
     var relacaoDao = new RelacaoRitualDAO();
     var personagemDao = new PersonagemDAO();
     var origemDao = new OrigemDAO();
@@ -25,11 +24,14 @@
     int pesoArmas = armaDao.PesoArmas(Model.Id);
     int pesoItens = itemDao.PesoItens(Model.Id);
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var basePath = (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+      ? "https://www.danieloliveira.net.br/FichaRPG/"
+      : "~/";
 }
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="@Url.Content("./css/Details.css?v=1")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/Details.css?v=1")" asp-append-version="true" />
 
 </head>
 <body>
@@ -268,7 +270,7 @@
                                 <button id="Int" class="atributos intelecto hex btn font2">@Model.Intelecto</button>
                                 <button id="Pre" class="atributos presenca hex btn font2">@Model.Presenca</button>
                                 <button id="Vig" class="atributos vigor hex btn font2">@Model.Vigor</button>
-                                <img src="./images/atributos.webp" alt="Atributos" />
+                                <img src="~/images/atributos.webp" alt="Atributos" />
                             </div>
                         </div>
                     </div>
@@ -786,4 +788,4 @@
         </div>
     </div>
 </body>
-<script src="@Url.Content("./js/Details.js")"></script>
+<script src="@Url.Content(basePath + "js/Details.js")"></script>

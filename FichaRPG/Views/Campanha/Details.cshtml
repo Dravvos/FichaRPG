@@ -10,12 +10,15 @@
     var personagensCampanha = campanhaPersonagemDao.ObterPersonagensDeUmaCampanha(Model.Id);
     var classeDao = new ClasseDAO();
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var basePath = (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+      ? "https://www.danieloliveira.net.br/FichaRPG/"
+      : "~/";
 }
 
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="@Url.Content("./css/campanha.css")" />
+    <link rel="stylesheet" href="@Url.Content(basePath + "css/campanha.css")" />
 </head>
 
 <div class="container pt-3 pb-3 mb-5">

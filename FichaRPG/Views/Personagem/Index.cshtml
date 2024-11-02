@@ -4,11 +4,14 @@
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
     var personagemDAO = new PersonagemDAO();
     var personagens=personagemDAO.ListarPersonagensPorUsuario(ViewBag.Usuario);
+    var basePath = (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+      ? "https://www.danieloliveira.net.br/FichaRPG/"
+      : "~/";
 }
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="@Url.Content("./css/personagem.css")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content(basePath+ "css/personagem.css")" asp-append-version="true" />
 </head>
 <div class="container">
     <div class="rpg-coluna">
