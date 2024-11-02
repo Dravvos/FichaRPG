@@ -48,6 +48,7 @@ namespace FichaRPG
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UsePathBase("/FichaRPG");
             }
             app.UseStaticFiles();
             app.UseSession();
