@@ -126,6 +126,51 @@ as begin
 end
 go
 
+create procedure spInsert_Campanha
+(
+	@id int,
+	@nome varchar(300),
+	@descricao varchar(max),
+	@fotoCapa varbinary(max)
+)
+as begin
+	insert into Campanha
+		(id,nome,descricao,fotoCapa)
+	values
+		(@id, @nome, @descricao, @fotoCapa)
+
+end
+go
+
+create procedure spInsert_Campanha_Personagem
+(
+	@id int,
+	@campanhaId int,
+	@personagemId int
+)
+as begin
+	insert into Campanha_Personagem
+		(id,campanha_id,personagem_id)
+	values
+		(@id, @campanhaId, @personagemId)
+
+end
+go
+
+create procedure spInsert_Campanha_Usuario
+(
+	@id int,
+	@campanhaId int,
+	@usuarioId int
+)
+as begin
+	insert into Campanha_Usuario
+		(id,campanha_id,usuario_id)
+	values
+		(@id, @campanhaId, @usuarioId)
+
+end
+go
 
 ----------------------------------------------------------------------------
 --PROCEDURES UPDATE
@@ -260,6 +305,23 @@ as begin
 end
 go
 
+
+create procedure spUpdate_Campanha
+(
+	@id int,
+	@nome varchar(300),
+	@descricao varchar(max),
+	@fotoCapa varbinary(max)
+)
+as begin
+	update Campanha set
+		nome=@nome,
+		descricao=@descricao,
+		fotoCapa=@fotoCapa
+	where id = @id
+end
+go
+
 -----------------------------------------------------
 --PROCEDURE DELETE
 create proc spDelete (@tabela varchar(500),@id int)
@@ -286,6 +348,65 @@ go
 create proc spDeletarItem (@id int)
 as begin
 	exec ('delete from Itens where personagem_id = '+@id)
+end
+go
+
+
+create procedure spDelete_CampanhaPersonagem
+(
+	@campanhaId int,
+	@personagemId int
+)
+as begin
+exec ('delete Campanha_Personagem where campanha_id = '+@campanhaId +' and personagem_id='+ @personagemId)
+
+end
+go
+
+create procedure spDelete_CampanhaUsuario
+(
+	@campanha_id int, @usuario_id int
+)
+as begin
+	exec ('delete Campanha_Usuario where campanha_id = '+@campanha_id +' and usuario_id='+@usuario_id)
+end
+go
+
+create procedure spDelete_CampanhaUsuarioPorUsuario
+(
+	@usuario_id int
+)
+as begin
+	exec ('delete Campanha_Usuario where usuario_id='+@usuario_id)
+end
+go
+
+create procedure spDelete_CampanhaUsuarioPorCampanha
+(
+	@campanha_id int
+)
+as begin
+	exec ('delete Campanha_Usuario where campanha_id = '+@campanha_id)
+end
+go
+
+create procedure spDelete_CampanhaPersonagemPorCampanha
+(
+	@campanhaId int
+)
+as begin
+exec ('delete Campanha_Personagem where campanha_id = '+@campanhaId)
+
+end
+go
+
+create procedure spDelete_CampanhaPersonagemPorPersonagem
+(
+	@personagemId int
+)
+as begin
+exec ('delete Campanha_Personagem where personagem_id = '+@personagemId)
+
 end
 go
 -----------------------------------------------------------------------------------
@@ -338,6 +459,52 @@ as begin
 	select sum(espaco) peso from Itens where personagem_id=@p_id
 end
 go
+
+create procedure spListaCampanhas
+(
+	@usuarioId int
+)
+as begin
+	select c.* from Campanha c
+	inner join Campanha_Usuario cu on c.id=cu.campanha_id
+	inner join Campanha_Personagem cp on cp.campanha_id= c.id
+	where usuario_id=@usuarioId
+
+end
+go
+
+create procedure spListaCampanhasUsuario
+( @usuarioId int)
+as begin
+	select * from Campanha_Usuario
+	where usuario_id = @usuarioId
+end
+go
+
+create procedure spListaUsuariosCampanha
+( @campanhaId int)
+as begin
+	select * from Campanha_Usuario
+	where campanha_id = @campanhaId
+end
+go
+
+create procedure spListaCampanhasPersonagem
+( @personagemId int)
+as begin
+select * from Campanha_Personagem
+	where personagem_id= @personagemId
+end
+go
+
+create procedure spListaPersonagensCampanha
+( @campanhaId int)
+as begin
+select * from Campanha_Personagem
+	where campanha_id= @campanhaId
+end
+go
+
 -----------------------------------
 --PROCEDURE SEARCH
 go

@@ -146,16 +146,193 @@ create table Itens(id int primary key identity(1,1),
 	personagem_id int constraint FK_Personagem_Item foreign key references Personagem(id) not null
 )
 
-/*
 
-create table Habilidades(id int primary key identity(1,1),
-	nome varchar(200) not null,
-	descricao varchar(max) not null,
-	)
+create table Campanha 
+(
+	id int primary key identity (1,1),
+	nome varchar(300) not null,
+	descricao varchar(max) null,
+	fotoCapa varbinary(max) null,
+)
+go
 
-create table Relacao_Habilidade(id int primary key identity(1,1),
-	Habilidade_id int foreign key references Habilidades(id) not null,
-	Personagem_id int constraint FK_Personagem_Habilidade foreign key references Personagem(id) not null
-	)
+create table Campanha_Usuario
+(
+	id int primary key identity (1,1),
+	campanha_id int foreign key references Campanha(id) not null,
+	usuario_id int foreign key references Usuario(id) not null
+)
+go
 
-	*/
+create table Campanha_Personagem
+(
+	id int primary key identity (1,1),
+	campanha_id int foreign key references Campanha(id) not null,
+	personagem_id int foreign key references Personagem(id) not null
+)
+go
+
+create procedure spInsert_Campanha
+(
+	@id int,
+	@nome varchar(300),
+	@descricao varchar(max),
+	@fotoCapa varbinary(max)
+)
+as begin
+	insert into Campanha
+		(id,nome,descricao,fotoCapa)
+	values
+		(@id, @nome, @descricao, @fotoCapa)
+
+end
+go
+
+create procedure spInsert_Campanha_Personagem
+(
+	@id int,
+	@campanhaId int,
+	@personagemId int
+)
+as begin
+	insert into Campanha_Personagem
+		(id,campanha_id,personagem_id)
+	values
+		(@id, @campanhaId, @personagemId)
+
+end
+go
+
+create procedure spInsert_Campanha_Usuario
+(
+	@id int,
+	@campanhaId int,
+	@usuarioId int
+)
+as begin
+	insert into Campanha_Usuario
+		(id,campanha_id,usuario_id)
+	values
+		(@id, @campanhaId, @usuarioId)
+
+end
+go
+
+create procedure spUpdate_Campanha
+(
+	@id int,
+	@nome varchar(300),
+	@descricao varchar(max),
+	@fotoCapa varbinary(max)
+)
+as begin
+	update Campanha set
+		nome=@nome,
+		descricao=@descricao,
+		fotoCapa=@fotoCapa
+	where id = @id
+end
+go
+
+create procedure spListaCampanhas
+(
+	@usuarioId int
+)
+as begin
+	select c.* from Campanha c
+	inner join Campanha_Usuario cu on c.id=cu.campanha_id
+	inner join Campanha_Personagem cp on cp.campanha_id= c.id
+	where usuario_id=@usuarioId
+
+end
+go
+
+create procedure spListaCampanhasUsuario
+( @usuarioId int)
+as begin
+	select * from Campanha_Usuario
+	where usuario_id = @usuarioId
+end
+go
+
+create procedure spListaUsuariosCampanha
+( @campanhaId int)
+as begin
+	select * from Campanha_Usuario
+	where campanha_id = @campanhaId
+end
+go
+
+create procedure spListaCampanhasPersonagem
+( @personagemId int)
+as begin
+select * from Campanha_Personagem
+	where personagem_id= @personagemId
+end
+go
+
+create procedure spListaPersonagensCampanha
+( @campanhaId int)
+as begin
+select * from Campanha_Personagem
+	where campanha_id= @campanhaId
+end
+go
+
+create procedure spDelete_CampanhaPersonagem
+(
+	@campanhaId int,
+	@personagemId int
+)
+as begin
+exec ('delete Campanha_Personagem where campanha_id = '+@campanhaId +' and personagem_id='+ @personagemId)
+
+end
+go
+
+create procedure spDelete_CampanhaUsuario
+(
+	@campanha_id int, @usuario_id int
+)
+as begin
+	exec ('delete Campanha_Usuario where campanha_id = '+@campanha_id +' and usuario_id='+@usuario_id)
+end
+go
+
+create procedure spDelete_CampanhaUsuarioPorUsuario
+(
+	@usuario_id int
+)
+as begin
+	exec ('delete Campanha_Usuario where usuario_id='+@usuario_id)
+end
+go
+
+create procedure spDelete_CampanhaUsuarioPorCampanha
+(
+	@campanha_id int
+)
+as begin
+	exec ('delete Campanha_Usuario where campanha_id = '+@campanha_id)
+end
+go
+
+create procedure spDelete_CampanhaPersonagemPorCampanha
+(
+	@campanhaId int
+)
+as begin
+exec ('delete Campanha_Personagem where campanha_id = '+@campanhaId)
+
+end
+go
+
+create procedure spDelete_CampanhaPersonagemPorPersonagem
+(
+	@personagemId int
+)
+as begin
+exec ('delete Campanha_Personagem where personagem_id = '+@personagemId)
+
+end
+go
