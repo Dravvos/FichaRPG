@@ -1,8 +1,70 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página Inicial";
 }
+<style>
+    .hero {
+        padding: 60px 20px;
+        text-align: center;
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        .hero h2 {
+            font-size: 2em;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+    .cta-button {
+        margin-top: 20px;
+        padding: 12px 30px;
+        font-size: 1.2em;
+        color: white;
+        background-color: #ffbc4f;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration:none
+    }
+
+        .cta-button:hover {
+            background-color: #ffbc4f;
+        }
+
+    .features {
+        display: flex;
+        justify-content: space-around;
+        padding: 40px 20px;
+        background-color: #222;
+    }
+
+    .feature {
+        max-width: 300px;
+        text-align: center;
+    }
+
+        .feature h3 {
+            color: #ffbc4f;
+        }
+</style>
+
+<section class="hero">
+    <h2>Crie, edite e compartilhe suas fichas de RPG online</h2>
+    <a asp-action="Create" asp-controller="Usuario" class="cta-button">Comece Agora</a>
+</section>
+
+<section class="features" id="funcionalidades">
+    <div class="feature">
+        <h3>Editor Personalizado</h3>
+        <p>Monte fichas para o sistema Ordem Paranormal.</p>
+    </div>
+    <div class="feature">
+        <h3>Salvamento na Nuvem</h3>
+        <p>Acesse suas fichas de qualquer lugar, a qualquer hora.</p>
+    </div>
+    <div class="feature">
+        <h3>Modo Mestre</h3>
+        <p>Gerencie os personagens e campanhas de modo simples</p>
+    </div>
+</section>
