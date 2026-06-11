@@ -1,48 +1,98 @@
-# Ficha de RPG em MVC
-Este é um sistema para criação e gerenciamento de fichas de personagens para jogos de RPG (Role-Playing Game) implementado usando o padrão MVC (Model-View-Controller).
+# 🎲 Ficha de RPG — ASP.NET MVC
 
-## Visão Geral
-Este projeto foi desenvolvido com o objetivo de fornecer uma estrutura organizada para a criação de fichas de personagens em jogos de RPG. 
+Sistema web para **criação e gerenciamento de fichas de personagens** para jogos de RPG (Role-Playing Game), desenvolvido com o padrão arquitetural **MVC (Model-View-Controller)** usando **ASP.NET Core**.
 
-## Funcionalidades
-O projeto da ficha de RPG em MVC possui as seguintes funcionalidades:
+---
 
-1. Criação de fichas de personagens com campos para informações básicas, como nome, raça, classe, atributos, habilidades, etc.
-2. Armazenamento das fichas de personagens em um banco de dados ou em arquivos.
-3. Edição e atualização das informações das fichas de personagens.
-4. Exclusão de fichas de personagens.
-5. Visualização detalhada das fichas de personagens, exibindo todas as informações armazenadas.
-6. Autenticação de usuários para acesso seguro às fichas de personagens.
+## ✨ Funcionalidades
 
-  
-## Tecnologias Utilizadas
+- **Criar fichas** de personagens com campos completos: nome, raça, classe, atributos, habilidades e mais
+- **Editar e atualizar** informações de personagens existentes
+- **Excluir** fichas de personagens
+- **Visualização detalhada** de todas as informações do personagem
+- **Autenticação de usuários** para acesso seguro e privado às fichas
+- Armazenamento em banco de dados **SQL Server**
 
-* ASP.NET MVC Core
-* SQL Server
-* Bootstrap
-* Jquery
-* Font Awesome
+---
 
+## 🛠️ Tecnologias Utilizadas
 
-## Configuração e Execução
-Siga as etapas abaixo para configurar e executar o projeto da ficha de RPG em MVC:
+| Tecnologia        | Uso                                      |
+|-------------------|------------------------------------------|
+| ASP.NET Core MVC  | Framework principal (back-end e views)   |
+| SQL Server        | Banco de dados relacional                |
+| Bootstrap         | Estilização e responsividade             |
+| jQuery            | Interatividade no front-end              |
+| Font Awesome      | Ícones da interface                      |
+| JavaScript/CSS    | Comportamento e estilos customizados     |
+| T-SQL             | Scripts de banco de dados                |
 
-* Certifique-se de ter o SQL Server instalado em seu sistema.
-* Clone este repositório para o seu ambiente de desenvolvimento.
-* Importe o projeto em sua IDE.
-* Configure as informações de conexão com o banco de dados no arquivo ConexaoBD.cs
-* Execute o aplicativo em sua IDE.
-* Acesse o aplicativo por meio do navegador e comece a criar e gerenciar suas fichas de personagens.
+---
 
+## 📋 Pré-requisitos
 
-## Contribuição
-Contribuições são bem-vindas! Se você deseja contribuir para este projeto, siga as etapas abaixo:
+- [.NET SDK](https://dotnet.microsoft.com/download)
+- [SQL Server](https://www.microsoft.com/pt-br/sql-server) instalado e configurado
+- [Visual Studio](https://visualstudio.microsoft.com/) ou outra IDE compatível
 
-1. Faça um fork deste repositório.
-2. Crie uma nova branch com uma descrição clara da sua contribuição.
-3. Implemente suas alterações ou adições.
-4. Faça um pull request descrevendo as alterações que você fez.
+---
 
+## 🚀 Como Executar
 
-## Licença
-Este projeto está licenciado sob a MIT License. Sinta-se à vontade para usá-lo e modificá-lo de acordo com suas necessidades.
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/Dravvos/FichaRPG.git
+   ```
+
+2. **Configure o banco de dados:**
+   - Navegue até a pasta `Database Project`
+   - Execute os scripts SQL no seu SQL Server
+
+3. **Configure a string de conexão:**
+   - Abra o arquivo `ConexaoBD.cs` no projeto
+   - Atualize com as informações de conexão do seu servidor SQL
+
+4. **Execute o projeto:**
+   - Abra no Visual Studio e pressione `F5`, ou via CLI:
+     ```bash
+     cd FichaRPG
+     dotnet run
+     ```
+
+5. **Acesse no navegador:**
+   - `https://localhost:{porta}`
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+FichaRPG/
+├── .github/workflows/    # Configurações de CI/CD (GitHub Actions)
+├── FichaRPG/             # Código-fonte MVC (Controllers, Models, Views)
+├── Database Project/     # Scripts de banco de dados (T-SQL)
+├── .gitignore
+├── LICENSE               # Licença Apache 2.0
+└── README.md
+```
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são muito bem-vindas! Para contribuir:
+
+1. Faça um **fork** do repositório
+2. Crie uma nova branch: `git checkout -b minha-feature`
+3. Implemente suas alterações
+4. Envie um **pull request** descrevendo o que foi feito
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [Apache License 2.0](LICENSE).
+
+---
+
+Desenvolvido por [Daniel Oliveira Dias (Dravvos)](https://github.com/Dravvos)
